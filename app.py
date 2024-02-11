@@ -91,3 +91,16 @@ def login():
         flash('Invalid username or password.')
 
     return render_template('login.html')
+
+@app.route('/search_recipes', methods=['GET'])
+def search_recipes():
+    # Get the search query from the URL parameters
+    search_query = request.args.get('search', '')
+
+    # Query the database for recipes matching the search query
+    with sqlite3.connect(DATABASE) as connection:
+        cursor = connection.cursor()
+        cursor.execute('SELECT * FROM recipes WHERE title LIKE ? OR ingredients LIKE ?', ('%' + search_query + '%', '%' + search_query + '%'))
+        search_results = cursor.fetchall()
+
+    return render_template('search_results.html', search_results=search_results)

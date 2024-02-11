@@ -7,7 +7,29 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>Welcome to Your Recipe Book</h1>
+    <nav>
+        <a href="/templates/add_recipe.html">Add Recipe</a>
+        <a href="/templates/your_recipes.html">Your Recipes</a>
+        <a href="/templates/favorites.html">Favorites</a>
+        <a href="/templates/instructions.html">Instructions</a>
+        <a href="/templates/dashboard.html">Home</a>
+          <div class="search-container">
+        <form method="get" action="/templates/search_results.html" id="searchForm" class="form-group">
+            <label for="search"></label>
+            <input type="text" name="search" id="search" required>
+            <input type="submit" class="button1-style" value="Search">
+        </form>
+          </div>
+    </nav>
+    <div class="book-container">
+       
+        <div class="field-container">
+            
+            <img src="/static/images/border.png" alt="Border Image">
+            <div class="welcome">
+            </div>
+            <img src="/static/images/borderb.png" alt="Border Image">
+            <h1>Welcome to Your Recipe Book</h1>
             <h2>A place to add and store your very own recipes without them getting lost.
             <br>
             From here you can add new recipes, view your recipes, add and view your favorites
@@ -19,7 +41,15 @@
             <br>
             There are also some basic recipes that you can search for to get you started!
             <br>
-            We hope you enjouy using your new Recipe Book!
+            We hope you enjoy using your new Recipe Book!
             </h2>
+
+
+        </div>
+    </div>
+
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+
 </body>
 </html>

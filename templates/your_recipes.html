@@ -6,6 +6,19 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <nav>
+        <a href="/templates/add_recipe.html">Add Recipe</a>
+        <a href="/templates/your_recipes.html">Your Recipes</a>
+        <a href="/templates/favorites.html">Favorites</a>
+        <a href="/templates/instructions.html">Instructions</a>
+        <a href="/templates/dashboard.html">Home</a>
+          <div class="search-container">
+        <form method="get" action="/templates/search_results.html" id="searchForm" class="form-group">
+            <label for="search"></label>
+            <input type="text" name="search" id="search" required>
+            <input type="submit" class="button1-style" value="Search">
+        </form>
+          </div>
+    </nav> 
 </body>
 </html>
