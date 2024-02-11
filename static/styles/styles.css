@@ -31,6 +31,14 @@ hr {
 }
 
 /* buttons */
+.button1-style,
+a.button2-style,
+.button3-style,
+input[type="file"]::file-selector-button {
+    font-family: 'Indie Flower', Arial, sans-serif, cursive !important;
+    cursor: pointer;
+}
+
 .button1-style {
     width: auto;
     padding: 10px 20px;
@@ -42,6 +50,52 @@ hr {
 }
 
 .button1-style:hover {
+    background-color: #7b1630;
+    color: #fff;
+}
+
+a.button2-style {
+    color: #000000;
+    width: auto;
+    padding: 8px 20px 11px;
+    font-size: 24px;
+    margin: 10px;
+    background-color: #e2d7bb;
+    text-decoration: none;
+    border: 2px #000000;
+    border-style: outset;
+}
+
+.button3-style {
+    width: auto;
+    padding: 10px 7px;
+    font-size: 24px;
+    color: #eed9c4;
+    margin-top: 28px;
+    margin-left: 15px;
+    background-color: #5f0d19;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button3-style:hover {
+    background-color: #7b1630;
+    color: #fff;
+}
+
+/* file upload button */
+input[type="file"]::file-selector-button {
+    width: auto;
+    color: #eed9c4;
+    padding: 10px 20px;
+    font-size: 24px;
+    margin-top: 10px;
+    background-color: #5f0d19;
+    border: none;
+}
+
+/* file upload button hover state */
+input[type="file"]::file-selector-button:hover {
     background-color: #7b1630;
     color: #fff;
 }
