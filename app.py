@@ -130,4 +130,71 @@ def dashboard():
         return redirect(url_for('login'))
 
     user_id = session['user_id']
-     return render_template('dashboard.html')
+    return render_template('dashboard.html')
+
+@app.route('/add_recipe', methods=['GET', 'POST'])
+def add_recipe():
+    # Check if the user is logged in
+    if 'user_id' not in session:
+        flash('You need to log in first.')
+        return redirect(url_for('login'))
+
+    user_id = session['user_id']
+
+    if request.method == 'POST':
+        # Handle recipe addition
+        title = request.form['title']
+        ingredients = request.form['ingredients']
+        instructions = request.form['instructions']
+        notes = request.form['notes']
+
+        # Initialize filename to None
+        filename = None
+
+        # Check if the post request has the file part
+        if 'image' in request.files:
+            file = request.files['image']
+            # Check if the file is one of the allowed types/extensions
+            if file and allowed_file(file.filename):
+                # Generate a unique filename, e.g., using UUID
+                filename = secure_filename(str(uuid.uuid4()) + os.path.splitext(file.filename)[1])
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            else:
+                flash('Invalid file type. Allowed types are png, jpg, jpeg, gif.')
+
+        # Save the recipe to the database with the filename (even if it's None)
+        with sqlite3.connect(DATABASE) as connection:
+            cursor = connection.cursor()
+            cursor.execute('INSERT INTO recipes (title, ingredients, instructions, notes, user_id, image) VALUES (?, ?, ?, ?, ?, ?)',
+                           (title, ingredients, instructions, notes, user_id, filename))
+            connection.commit()
+
+        flash('Recipe added successfully.')
+        return redirect(url_for('dashboard'))
+
+    return render_template('add_recipe.html')
+
+
+# New route for viewing the user's recipes
+@app.route('/your_recipes', methods=['GET'])
+def your_recipes():
+    # Check if the user is logged in
+    if 'user_id' not in session:
+        flash('You need to log in first.')
+        return redirect(url_for('login'))
+
+    user_id = session['user_id']
+
+    # Display user's recipes
+    with sqlite3.connect(DATABASE) as connection:
+        cursor = connection.cursor()
+        cursor.execute('SELECT * FROM recipes WHERE user_id=?', (user_id,))
+        recipes = cursor.fetchall()
+
+    return render_template('your_recipes.html', recipes=recipes)
+
+
+@app.route('/instructions')
+def instructions():
+   
+    return render_template('instructions.html')
