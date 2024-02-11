@@ -80,7 +80,26 @@ hr {
     align-items: center;
 }
 
-/* styles for page images*/
+.book-container {
+    width: 80%;
+    min-height: 200px;
+    max-height: 85%;
+    padding-top: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    margin: auto;
+}
+
+.recipe-container {
+    display: grid;
+    grid-template-areas: "image name" "ingredients method";
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+
 /* Styles for page images */
 .add-recipe {
     background: url('/static/images/add_recipel.png') center center;
