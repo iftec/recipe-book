@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
+    <title>Login</title>
+   
 </head>
-<body>
+<body class=" background-login">
+    
+        <div class="login-container ">
+    <h1>Please Login</h1>
+    <form method="post">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" autocomplete="username" style="width:50%; height:40px;"  required>
+        <p>
+        <label for="password">Password:</label>
+        <input type="password"  name="password" id="password" autocomplete="current-password" style="width:50%; height:40px;"  required>
+        </p>
+        <input type="submit" class= "button1-style" value="Login">
+    </form>
+        </div>
+    </div>
     
 </body>
 </html>

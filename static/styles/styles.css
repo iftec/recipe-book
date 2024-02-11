@@ -251,3 +251,15 @@ nav a.selected {
     font-size: 24px;
     box-sizing: border-box;
 }
+
+/* Style for the submit button */
+.form-group input[type="submit"] {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 24px;
+    color: #e2d7bb;
+}
+
+.form-width {
+    width: 60%;
+}
