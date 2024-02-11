@@ -81,6 +81,57 @@ hr {
 }
 
 /* styles for page images*/
+/* Styles for page images */
+.add-recipe {
+    background: url('/static/images/add_recipel.png') center center;
+    width: 90%;
+    background-size: 100% 100%;
+    padding-top: 150px;
+    padding-bottom: 175px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.your-recipes {
+    background: url('/static/images/your_recipesl.png') center center;
+    width: 90%;
+    background-size: 100% 100%;
+    padding-top: 150px;
+    padding-bottom: 175px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.search-results {
+    background: url('/static/images/seaqrch_resultsl.png') center center;
+    width: 90%;
+    background-size: 100% 100%;
+    padding-top: 150px;
+    padding-bottom: 175px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.edit-recipe {
+    background: url('/static/images/your_recipesl.png') center center;
+    width: 90%;
+    background-size: 100% 100%;
+    padding-top: 150px;
+    padding-bottom: 175px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.instructions {
+    background: url('/static/images/chef_hintsl.png') center center;
+    width: 90%;
+    background-size: 100% 100%;
+    padding-top: 150px;
+    padding-bottom: 175px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
 .welcome {
     background: url('/static/images/welcomel.png') center center;
     width: 90%;
@@ -91,6 +142,15 @@ hr {
     margin-bottom: 2px;
 }
 
+.your-favorites {
+    background: url('/static/images/favoritesl.png') center center;
+    width: 90%;
+    background-size: 100% 100%;
+    padding-top: 150px;
+    padding-bottom: 175px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
 /* Styles for nav bar */
 nav {
     background: url('/static/images/bookmark.png') no-repeat;
