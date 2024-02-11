@@ -99,6 +99,16 @@ hr {
     margin-left: 20px;
 }
 
+#image_container {
+    width: 400px;
+}
+
+#image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
 
 /* Styles for page images */
 .add-recipe {
@@ -201,4 +211,23 @@ nav a.selected {
     text-align: center;
     max-width: 100%;
     padding-inline: 0px;
+}
+
+/* Style for labels */
+.label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.form-group1 {
+    display:flex;
+    margin-bottom: 15px;
+    text-align: center;
+    max-width: 100%;
 }
