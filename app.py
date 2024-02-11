@@ -104,3 +104,30 @@ def search_recipes():
         search_results = cursor.fetchall()
 
     return render_template('search_results.html', search_results=search_results)
+
+@app.route('/favorites', methods=['GET'])
+def favorites():
+    # Check if the user is logged in
+    if 'user_id' not in session:
+        flash('You need to log in first.')
+        return redirect(url_for('login'))
+
+    user_id = session['user_id']
+
+    # Get user's favorite recipes
+    with sqlite3.connect(DATABASE) as connection:
+        cursor = connection.cursor()
+        cursor.execute('SELECT r.* FROM recipes r JOIN favorites f ON r.id = f.recipe_id WHERE f.user_id=?', (user_id,))
+        favorites = cursor.fetchall()
+
+    return render_template('favorites.html', favorites=favorites, user_id=user_id)
+
+@app.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    # Check if the user is logged in
+    if 'user_id' not in session:
+        flash('You need to log in first.')
+        return redirect(url_for('login'))
+
+    user_id = session['user_id']
+     return render_template('dashboard.html')
