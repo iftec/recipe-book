@@ -52,3 +52,42 @@ def create_tables():
 create_tables()
 
 # Routes
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        with sqlite3.connect(DATABASE) as connection:
+            cursor = connection.cursor()
+            cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
+            connection.commit()
+
+        flash('Signup successful! Please log in.')
+        return redirect(url_for('login'))
+
+    return render_template('signup.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        with sqlite3.connect(DATABASE) as connection:
+            cursor = connection.cursor()
+            cursor.execute('SELECT * FROM users WHERE username=? AND password=?', (username, password))
+            user = cursor.fetchone()
+
+        if user:
+            session['user_id'] = user[0]
+            flash('Login successful!')
+            return redirect(url_for('dashboard'))
+
+        flash('Invalid username or password.')
+
+    return render_template('login.html')

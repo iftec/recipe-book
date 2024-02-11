@@ -24,3 +24,36 @@ h2 {
     margin-left: 16px;
     color: #4e3d36;
 }
+
+/* buttons */
+.button1-style {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 24px;
+    margin: 10px;
+    color: #e2d7bb;
+    background-color: #5f0d19;
+    border: none;
+}
+
+.button1-style:hover {
+    background-color: #7b1630;
+    color: #fff;
+}
+
+ /* containers */
+.login-container {
+    width: 35%;
+    min-height: 200px;
+    max-height: 30%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
