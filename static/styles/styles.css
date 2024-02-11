@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Public+Sans&display=swap&family=Indie+Flower&family=Amatic+SC');
+
+body {
+    font-family: 'Indie Flower', Arial, sans-serif, cursive !important;
+    line-height: 1.6;
+    font-size: 24px;
+    height: 100vh;
+    margin: 0;
+    background: #f3e3c2;
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Indie Flower', Arial, sans-serif, cursive !important;
+    color: #4e3d36;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    font-size: 4rem;
+}
+
+h2 {
+    margin-left: 16px;
+    color: #4e3d36;
+}
