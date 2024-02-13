@@ -30,3 +30,15 @@ async function makeFetchRequest(url, method, data, successMessage, errorMessage)
 function submitSearchForm() {
     document.getElementById('searchForm').submit();
 }
+
+async function addToFavorites(recipeId) {
+    const url = `/add_to_favorites/${recipeId}`;
+    const method = 'POST';
+    const data = {};
+    const successMessage = 'Recipe added to favorites!';
+    const errorMessage = 'This recipe is already in your favorites!!';
+
+    const responseData = await makeFetchRequest(url, method, data, successMessage, errorMessage);
+
+    // Additional handling specific to addToFavorites if needed
+}
