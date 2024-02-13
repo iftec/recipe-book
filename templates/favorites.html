@@ -33,7 +33,7 @@
         <!-- Display user's favorite recipes -->
         {% for favorite in favorites %}
         <article class="recipe-item">
-            <div  class="recipe-container">
+            <div id="printableArea{{ favorite[0] }}" class="recipe-container">
                 <div class="recipe-image">
                     {% if favorite[6] %}
                     <img src="{{ url_for('static', filename='uploads/' + favorite[6]) }}" alt="{{ favorite[1] }}">
@@ -76,7 +76,9 @@
 
             </div>
             
-           
+            <!-- Remove from Favorites Button -->
+            <button onclick="removeFromFavorites({{ favorite[0] }})" class="button1-style">Remove from Favorites</button>
+            <a class="button3-style" onclick="printPageArea({{ favorite[0] }})">Print Recipe</a>
 
             
             <hr>

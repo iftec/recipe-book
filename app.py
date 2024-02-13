@@ -122,6 +122,23 @@ def favorites():
 
     return render_template('favorites.html', favorites=favorites, user_id=user_id)
 
+@app.route('/remove_from_favorites/<int:recipe_id>', methods=['POST'])
+def remove_from_favorites(recipe_id):
+    # Check if the user is logged in
+    if 'user_id' not in session:
+        return jsonify({'success': False, 'message': 'User not logged in'})
+
+    user_id = session['user_id']
+
+    # Handle removing the recipe from favorites
+    with sqlite3.connect(DATABASE) as connection:
+        cursor = connection.cursor()
+        cursor.execute('DELETE FROM favorites WHERE user_id=? AND recipe_id=?', (user_id, recipe_id))
+        connection.commit()
+
+    return jsonify({'success': True, 'message': 'Recipe removed from favorites'})
+
+
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     # Check if the user is logged in
@@ -175,7 +192,7 @@ def add_recipe():
     return render_template('add_recipe.html')
 
 
-# New route for viewing the user's recipes
+# route for viewing the user's recipes
 @app.route('/your_recipes', methods=['GET'])
 def your_recipes():
     # Check if the user is logged in
