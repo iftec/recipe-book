@@ -198,3 +198,35 @@ def your_recipes():
 def instructions():
    
     return render_template('instructions.html')
+
+# add to favorites
+@app.route('/add_to_favorites/<int:recipe_id>', methods=['POST'])
+def add_to_favorites(recipe_id):
+    # Check if the user is logged in
+    if 'user_id' not in session:
+        return jsonify({'success': False, 'message': 'User not logged in'})
+
+    user_id = session['user_id']
+
+    # Check if the recipe is already in favorites
+    with sqlite3.connect(DATABASE) as connection:
+        cursor = connection.cursor()
+        cursor.execute('SELECT * FROM favorites WHERE user_id=? AND recipe_id=?', (user_id, recipe_id))
+        existing_favorite = cursor.fetchone()
+
+        if existing_favorite:
+            return jsonify({'success': False, 'message': 'Recipe already in favorites'})
+
+    # Add the recipe to favorites
+    with sqlite3.connect(DATABASE) as connection:
+        cursor = connection.cursor()
+        cursor.execute('INSERT INTO favorites (user_id, recipe_id) VALUES (?, ?)', (user_id, recipe_id))
+        connection.commit()
+
+    # Get the updated list of favorites
+    with sqlite3.connect(DATABASE) as connection:
+        cursor = connection.cursor()
+        cursor.execute('SELECT r.* FROM recipes r JOIN favorites f ON r.id = f.recipe_id WHERE f.user_id=?', (user_id,))
+        favorites = cursor.fetchall()
+
+    return jsonify({'success': True, 'message': 'Recipe added to favorites', 'favorites': favorites})
