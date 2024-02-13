@@ -152,6 +152,61 @@ input[type="file"]::file-selector-button:hover {
     margin-top: 20px;
     margin-left: 20px;
 }
+/* styling for recipe layout*/
+#your-recipes-list {
+    list-style: none;
+    padding: 20px;
+}
+
+.recipe-item {
+    margin: 10px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.recipe-image {
+    padding: 10px;
+}
+
+.recipe-image img {
+    width: 50%;
+    height: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    grid-area: image;
+}
+
+.recipe-details {
+    padding-left: 150px;
+}
+
+.recipe-title {
+    grid-area: name;
+    font-family: 'Indie Flower', sans-serif cursive !important;
+    font-size: 46px;
+    color: #83492e;
+    border: 1px dashed #935445;
+    padding-inline: 20px;
+}
+
+.recipe-method {
+    margin-top: 10px;
+    grid-area: method;
+}
+
+.recipe-details p {
+    margin: 20px;
+}
+
+.recipe-details ul {
+    margin-top: 0;
+}
+
+.recipe-details strong {
+    font-weight: bold;
+}
+
+
 
 #image_container {
     width: 400px;

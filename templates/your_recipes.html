@@ -28,6 +28,44 @@
     <div class="your-recipes">  
     </div>
     <img src="/static/images/borderb.png" alt="Border Image">
+    <h1>Your Recipes</h1>
+    <div class="recipes-grid">
+        <!-- Display user's recipes -->
+        {% for recipe in recipes %}
+        <div class="recipe-item">
+            <div  class="recipe-container">
+                <div class="recipe-image">
+                    {% if recipe[6] %}
+                    <img src="{{ url_for('static', filename='uploads/' + recipe[6]) }}" alt="{{ recipe[1] }}">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='default_image.jpg') }}" alt="Default Image">
+                    {% endif %}
+                    <p class="recipe-title"><strong>{{ recipe[1] }}</strong></p>
+                     <!-- Display Method with Numbers -->
+                     <div class="recipe-method">
+                        <strong class="other-titles" >Method:</strong>
+                        {% if recipe[3] %}
+                        <ol class="method-list">
+                            {% for step in recipe[3].split('\n') %}
+                            <li>{{ step }}</li>
+                            {% endfor %}
+                        </ol>
+                        {% endif %}
+                    </div>
+                </div>
+    
+                
+            </div>
+            
+           
+            <hr>
+        </div>
+        {% endfor %}
+       
+    </div>
+    </div>
+    </div>
+    
     <script src="/static/scripts/script.js"></script> 
 </body>
 </html>
