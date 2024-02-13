@@ -61,7 +61,17 @@
     
                 
             </div>
-            
+            <div class="button-group">
+                <!-- Add to Favorites Button -->
+                {% if recipe[0] not in favorite_recipe_ids %}
+                <button onclick="addToFavorites({{ recipe[0] }})" class="button3-style">Add to Favorites</button>
+                {% endif %}
+
+                
+                </form>
+                
+
+                </div>
            
             <hr>
         </div>
