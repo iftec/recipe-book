@@ -206,6 +206,14 @@ input[type="file"]::file-selector-button:hover {
     font-weight: bold;
 }
 
+.notes {
+    background-color: #eed9c4;
+    margin-top: 60px;
+    margin-right: 20px;
+    margin-left: 20px;
+    min-height: 300px;
+}
+
 
 
 #image_container {
