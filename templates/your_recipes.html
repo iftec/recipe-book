@@ -33,7 +33,7 @@
         <!-- Display user's recipes -->
         {% for recipe in recipes %}
         <div class="recipe-item">
-            <div  class="recipe-container">
+            <div id="printableArea{{ recipe[0] }}" class="recipe-container">
                 <div class="recipe-image">
                     {% if recipe[6] %}
                     <img src="{{ url_for('static', filename='uploads/' + recipe[6]) }}" alt="{{ recipe[1] }}">
@@ -86,10 +86,8 @@
                 {% if recipe[0] not in favorite_recipe_ids %}
                 <button onclick="addToFavorites({{ recipe[0] }})" class="button3-style">Add to Favorites</button>
                 {% endif %}
-
-                
                 </form>
-                
+                <a class="button3-style" onclick="printPageArea({{ recipe[0] }})">Print Recipe</a>
 
                 </div>
            

@@ -40,5 +40,12 @@ async function addToFavorites(recipeId) {
 
     const responseData = await makeFetchRequest(url, method, data, successMessage, errorMessage);
 
-    // Additional handling specific to addToFavorites if needed
+}
+
+function printPageArea(recipeID) {
+    var printContent = document.getElementById('printableArea' + recipeID).innerHTML;
+    var originalContent = document.body.innerHTML;
+    document.body.innerHTML = printContent;
+    window.print();
+    document.body.innerHTML = originalContent;
 }
