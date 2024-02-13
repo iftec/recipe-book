@@ -28,7 +28,61 @@
     <div class="your-favorites">  
     </div>
     <img src="/static/images/borderb.png" alt="Border Image">
-            <h1>Your Favorites</h1>    
+    <h1>Your Favorite Recipes</h1>
+    <div class="recipes-grid">
+        <!-- Display user's favorite recipes -->
+        {% for favorite in favorites %}
+        <article class="recipe-item">
+            <div  class="recipe-container">
+                <div class="recipe-image">
+                    {% if favorite[6] %}
+                    <img src="{{ url_for('static', filename='uploads/' + favorite[6]) }}" alt="{{ favorite[1] }}">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='default_image.jpg') }}" alt="Default Image">
+                    {% endif %}
+                    <p class="recipe-title"><strong>{{ favorite[1] }}</strong></p>
+                    <!-- Display Method with Numbers -->
+                    <div class="recipe-method">
+                        <strong class="other-titles" >Method:</strong>
+                        {% if favorite[3] %}
+                        <ol class="method-list">
+                            {% for step in favorite[3].split('\n') %}
+                            <li>{{ step }}</li>
+                            {% endfor %}
+                        </ol>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="recipe-details">
+                    <!-- Display Ingredients as a List -->
+                    <p><strong class="other-titles">Ingredients:</strong></p>
+                    {% if favorite[2] %}
+                    <ul>
+                        {% for ingredient in favorite[2].split('\n') %}
+                        <li>{{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    <!-- Notes Section -->
+                    <blockquote class="notes">
+                        <p><strong class="other-titles">Notes:</strong><div class="text-notes"> {{ favorite[4] }}</div></p>
+                    </blockquote>
+
+                    <br>
+
+                </div>
+
+            </div>
+            
+           
+
+            
+            <hr>
+        </article>
+        {% endfor %}
+    </div>   
     <script src="/static/scripts/script.js"></script>
 </body>
 </html>
