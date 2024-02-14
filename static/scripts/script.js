@@ -93,3 +93,4 @@ function showNotification(message, isSuccess) {
         alert('Sorry: ' + message);
     }
 }
+
