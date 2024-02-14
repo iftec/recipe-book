@@ -14,7 +14,7 @@
         <a href="{{ url_for('instructions') }}">Instructions</a>
         <a href="{{ url_for('dashboard') }}">Home</a>
           <div class="search-container">
-        <form method="get" action="/templates/search_results.html" id="searchForm" class="form-group">
+        <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
             <label for="search"></label>
             <input type="text" name="search" id="search" required>
             <input type="submit" class="button1-style" value="Search">
