@@ -267,3 +267,63 @@ def add_to_favorites(recipe_id):
 
     return jsonify({'success': True, 'message': 'Recipe added to favorites', 'favorites': favorites})
 
+
+@app.route('/edit_recipe/<int:recipe_id>', methods=['GET', 'POST'])
+def edit_recipe(recipe_id):
+    # Check if the user is logged in
+    if 'user_id' not in session:
+        flash('You need to log in first.')
+        return redirect(url_for('login'))
+
+    user_id = session['user_id']
+
+    # Retrieve recipe details for editing
+    with sqlite3.connect(DATABASE) as connection:
+        connection.row_factory = sqlite3.Row
+        cursor = connection.cursor()
+        cursor.execute('SELECT * FROM recipes WHERE id=? AND user_id=?', (recipe_id, user_id))
+        recipe = cursor.fetchone()
+
+    # Define the variable outside of the 'if request.method == 'POST':' block
+    image_filename = None
+
+    if request.method == 'POST':
+        # Handle recipe editing
+        title = request.form['title']
+        ingredients = request.form['ingredients']
+        instructions = request.form['instructions']
+        notes = request.form['notes']
+
+        # Check if the request has a file part
+        if 'image' in request.files:
+            file = request.files['image']
+
+            # Save the file if it has a filename
+            if file.filename != '':
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+                # Update the 'image' column in the database with the filename
+                with sqlite3.connect(DATABASE) as connection:
+                    cursor = connection.cursor()
+                    cursor.execute('UPDATE recipes SET image=? WHERE id=? AND user_id=?',
+                                   (filename, recipe_id, user_id))
+                    connection.commit()
+                    # Set the variable to be used later
+                    image_filename = filename
+
+        # Update other recipe details
+        with sqlite3.connect(DATABASE) as connection:
+            cursor = connection.cursor()
+            cursor.execute('UPDATE recipes SET title=?, ingredients=?, instructions=?, notes=? WHERE id=? AND user_id=?',
+                           (title, ingredients, instructions, notes, recipe_id, user_id))
+            connection.commit()
+
+        # Debugging print statements
+        print(f"Image filename: {image_filename}")
+        print(f"Recipe image: {recipe[5]}")
+
+        
+
+    # Return the template without flashing the message for the 'GET' request
+    return render_template('edit_recipe.html', recipe=recipe, user_id=user_id)
