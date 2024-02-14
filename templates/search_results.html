@@ -7,20 +7,83 @@
     <title>Document</title>
 </head>
 <body>
-    <nav>
+      <nav>
         <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
         <a href="{{ url_for('your_recipes') }}">Your Recipes</a>
         <a href="{{ url_for('favorites') }}">Favorites</a>
         <a href="{{ url_for('instructions') }}">Instructions</a>
         <a href="{{ url_for('dashboard') }}">Home</a>
           <div class="search-container">
-        <form method="get" action="/templates/search_results.html" id="searchForm" class="form-group">
+        <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
             <label for="search"></label>
             <input type="text" name="search" id="search" required>
             <input type="submit" class="button1-style" value="Search">
         </form>
           </div>
     </nav>
-    <script src="/static/scripts/script.js"></script>
+    <div class="book-container">
+        <div class="field-container">
+            <img src="/static/images/border.png" alt="Border Image">
+        <div class="search-results">
+        </div>
+        <img src="/static/images/borderb.png" alt="Border Image">
+        <h1>Search Results</h1>
+        <div class="recipes-grid">
+            <!-- Display search results -->
+            {% for result in search_results %}
+            <div class="recipe-item">
+                <div id="printableArea{{ result[0] }}" class="recipe-container">
+                    <div class="recipe-image">
+                        {% if result[6] %}
+                        <img src="{{ url_for('static', filename='uploads/' + result[6]) }}" alt="{{ result[1] }}">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='default_image.jpg') }}" alt="Default Image">
+                        {% endif %}
+                        <p class="recipe-title"><strong>{{ result[1] }}</strong></p>
+                        <!-- Display Method with Numbers -->
+                        <div class="recipe-method">
+                            <strong class="other-titles" >Method:</strong>
+                            {% if result[3] %}
+                                    <ol class="method-list">
+                                        {% for step in result[3].split('\n') %}
+                                        <li>{{ step }}</li>
+                                        {% endfor %}
+                                    </ol>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="recipe-details">
+                                <!-- Display Ingredients as a List -->
+                                <p><strong class="other-titles">Ingredients:</strong></p>
+                                {% if result[2] %}
+                                <ul>
+                                    {% for ingredient in result[2].split('\n') %}
+                                    <li>{{ ingredient }}</li>
+                                    {% endfor %}
+                                </ul>
+                        {% endif %}
+
+                        <div class="notes">
+                            <p><strong class="other-titles">Notes:</strong><div class="text-notes"> {{ result[4] }}</div></p>
+                        </div>
+                        <br>
+
+                        
+                         <a class="button3-style" onclick="printPageArea({{ result[0] }})">Print Recipe</a>
+                    </div>
+                   
+
+                </div>
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    </div>
+
+    <script src="{{url_for('static', filename='script.js')}}"></script>
 </body>
+
 </html>
