@@ -1,11 +1,20 @@
+<!-- Renders a page displaying the logged in user's added recipes.
+
+Fetches the user's recipes from the database and displays them in a grid layout. Allows the user to add recipes to their favorites, edit, delete, or print them.
+
+Contains links in the navbar for site navigation and a search bar. Uses Jinja templating and custom CSS for styling.
+
+-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
     <title>Document</title>
 </head>
+
 <body>
     <nav>
         <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
@@ -13,95 +22,104 @@
         <a href="{{ url_for('favorites') }}">Favorites</a>
         <a href="{{ url_for('instructions') }}">Instructions</a>
         <a href="{{ url_for('dashboard') }}">Home</a>
-          <div class="search-container">
-        <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
-            <label for="search"></label>
-            <input type="text" name="search" id="search" required>
-            <input type="submit" class="button1-style" value="Search">
-        </form>
-          </div>
+        <div class="search-container">
+            <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
+                <label for="search"></label>
+                <input type="text" name="search" id="search" required>
+                <input type="submit" class="button1-style" value="Search">
+            </form>
+        </div>
     </nav>
     <div class="book-container">
         <div class="field-container">
-            
-            <img src= "/static/images/border.png" alt="Border Image">
-    <div class="your-recipes">  
-    </div>
-    <img src="/static/images/borderb.png" alt="Border Image">
-    <h1>Your Recipes</h1>
-    <div class="recipes-grid">
-        <!-- Display user's recipes -->
-        {% for recipe in recipes %}
-        <div class="recipe-item">
-            <div id="printableArea{{ recipe[0] }}" class="recipe-container">
-                <div class="recipe-image">
-                    {% if recipe[6] %}
-                    <img src="{{ url_for('static', filename='uploads/' + recipe[6]) }}" alt="{{ recipe[1] }}">
-                    {% else %}
-                    <img src="{{ url_for('static', filename='default_image.jpg') }}" alt="Default Image">
-                    {% endif %}
-                    <p class="recipe-title"><strong>{{ recipe[1] }}</strong></p>
-                     <!-- Display Method with Numbers -->
-                     <div class="recipe-method">
-                        <strong class="other-titles" >Method:</strong>
-                        {% if recipe[3] %}
-                        <ol class="method-list">
-                            {% for step in recipe[3].split('\n') %}
-                            <li>{{ step }}</li>
-                            {% endfor %}
-                        </ol>
-                        {% endif %}
-                            <br>
-                    </div>
-                </div>
-                <div class="recipe-details" >
-                    
-    
-                    <!-- Display Ingredients as a List -->
-                    <p><strong class="other-titles">Ingredients:</strong></p>
-    
-                    {% if recipe[2] %}
-                    <ul>
-                        {% for ingredient in recipe[2].split('\n') %}
-                        <li>{{ ingredient }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-    
-                   
-                    <div class="notes">
-                    <p><strong class="other-titles">Notes:</strong><div class="text-notes"> {{ recipe[4] }}</div></p>
-                    </div>
-                    <br>
-                    
-                </div>
-                
+
+            <img src="/static/images/border.png" alt="Border Image">
+            <div class="your-recipes">
             </div>
-            <div class="button-group">
-                <!-- Add to Favorites Button -->
-                {% if recipe[0] not in favorite_recipe_ids %}
-                <button onclick="addToFavorites({{ recipe[0] }})" class="button3-style">Add to Favorites</button>
-                {% endif %}
+            <img src="/static/images/borderb.png" alt="Border Image">
+            <h1>Your Recipes</h1>
+            <div class="recipes-grid">
+                <!-- Display user's recipes -->
+                {% for recipe in recipes %}
+                <div class="recipe-item">
+                    <div id="printableArea{{ recipe[0] }}" class="recipe-container">
+                        <div class="recipe-image">
+                            {% if recipe[6] %}
+                            <img src="{{ url_for('static', filename='uploads/' + recipe[6]) }}" alt="{{ recipe[1] }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='default_image.jpg') }}" alt="Default Image">
+                            {% endif %}
+                            <p class="recipe-title"><strong>{{ recipe[1] }}</strong></p>
+                            <!-- Display Method with Numbers -->
+                            <div class="recipe-method">
+                                <strong class="other-titles">Method:</strong>
+                                {% if recipe[3] %}
+                                <ol class="method-list">
+                                    {% for step in recipe[3].split('\n') %}
+                                    <li>{{ step }}</li>
+                                    {% endfor %}
+                                </ol>
+                                {% endif %}
+                                <br>
+                            </div>
+                        </div>
+                        <div class="recipe-details">
 
-                </form>
 
-                  <!-- Delete Button -->
-                  <form method="post" action="{{ url_for('delete_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
-                    <input class="button3-style" type="submit" value="Delete Recipe">
-                </form>
+                            <!-- Display Ingredients as a List -->
+                            <p><strong class="other-titles">Ingredients:</strong></p>
 
-                <a class="button3-style" onclick="printPageArea({{ recipe[0] }})">Print Recipe</a>
+                            {% if recipe[2] %}
+                            <ul>
+                                {% for ingredient in recipe[2].split('\n') %}
+                                <li>{{ ingredient }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
 
+
+                            <div class="notes">
+                                <p><strong class="other-titles">Notes:</strong>
+                                <div class="text-notes"> {{ recipe[4] }}</div>
+                                </p>
+                            </div>
+                            <br>
+
+                        </div>
+
+                    </div>
+                    <div class="button-group">
+                        <!-- Add to Favorites Button -->
+                        {% if recipe[0] not in favorite_recipe_ids %}
+                        <button onclick="addToFavorites({{ recipe[0] }})" class="button3-style">Add to
+                            Favorites</button>
+                        {% endif %}
+
+                        <!-- Edit Button -->
+                        <form method="get" action="{{ url_for('edit_recipe', recipe_id=recipe[0]) }}"
+                            style="display: inline;">
+                            <input class="button3-style" type="submit" value="Edit Recipe">
+                        </form>
+
+                        <!-- Delete Button -->
+                        <form method="post" action="{{ url_for('delete_recipe', recipe_id=recipe[0]) }}"
+                            style="display: inline;">
+                            <input class="button3-style" type="submit" value="Delete Recipe">
+                        </form>
+
+                        <a class="button3-style" onclick="printPageArea({{ recipe[0] }})">Print Recipe</a>
+
+                    </div>
+
+                    <hr>
                 </div>
-           
-            <hr>
+                {% endfor %}
+
+            </div>
         </div>
-        {% endfor %}
-       
     </div>
-    </div>
-    </div>
-    
-    <script src="/static/scripts/script.js"></script> 
+
+    <script src="/static/scripts/script.js"></script>
 </body>
+
 </html>
