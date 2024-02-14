@@ -380,3 +380,7 @@ nav a.selected {
 .form-width {
     width: 60%;
 }
+
+.form-button {
+    display: inline;
+}

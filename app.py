@@ -210,6 +210,25 @@ def your_recipes():
 
     return render_template('your_recipes.html', recipes=recipes)
 
+@app.route('/delete_recipe/<int:recipe_id>', methods=['POST'])
+def delete_recipe(recipe_id):
+    # Check if the user is logged in
+    if 'user_id' not in session:
+        flash('You need to log in first.')
+        return redirect(url_for('login'))
+
+    user_id = session['user_id']
+
+    # Handle recipe deletion
+    with sqlite3.connect(DATABASE) as connection:
+        cursor = connection.cursor()
+        cursor.execute('DELETE FROM recipes WHERE id=? AND user_id=?', (recipe_id, user_id))
+        connection.commit()
+
+        flash('Recipe deleted successfully.')
+
+    return redirect(url_for('dashboard'))
+
 
 @app.route('/instructions')
 def instructions():
@@ -247,3 +266,4 @@ def add_to_favorites(recipe_id):
         favorites = cursor.fetchall()
 
     return jsonify({'success': True, 'message': 'Recipe added to favorites', 'favorites': favorites})
+

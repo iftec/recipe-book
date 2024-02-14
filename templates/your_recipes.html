@@ -82,7 +82,14 @@
                 {% if recipe[0] not in favorite_recipe_ids %}
                 <button onclick="addToFavorites({{ recipe[0] }})" class="button3-style">Add to Favorites</button>
                 {% endif %}
+
                 </form>
+
+                  <!-- Delete Button -->
+                  <form method="post" action="{{ url_for('delete_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
+                    <input class="button3-style" type="submit" value="Delete Recipe">
+                </form>
+                
                 <a class="button3-style" onclick="printPageArea({{ recipe[0] }})">Print Recipe</a>
 
                 </div>
