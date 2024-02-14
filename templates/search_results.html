@@ -69,7 +69,8 @@
                         </div>
                         <br>
 
-                        
+                         <!-- Add to Favorites Button -->
+                         <button onclick="addToFavorites({{ result[0] }})" class="button1-style">Add to Favorites</button>
                          <a class="button3-style" onclick="printPageArea({{ result[0] }})">Print Recipe</a>
                     </div>
                    
@@ -83,7 +84,7 @@
     </div>
     </div>
 
-    <script src="{{url_for('static', filename='script.js')}}"></script>
+    <script src="/static/scripts/script.js"></script>
 </body>
 
 </html>
