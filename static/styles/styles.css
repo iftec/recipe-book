@@ -31,6 +31,14 @@ hr {
 }
 
 /* buttons */
+.button-group {
+    background: url('/static/images/bookmark.png') no-repeat;
+    overflow: hidden;
+    font-size: 36px;
+    margin: 5px 10px 5px 16px;
+    padding-bottom: 28px;
+}
+
 .button1-style,
 a.button2-style,
 .button3-style,
