@@ -400,3 +400,7 @@ nav a.selected {
     padding: 10px;
     box-sizing: border-box;
 }
+
+#search {
+    width: 50%
+}
