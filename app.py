@@ -110,7 +110,6 @@ def login():
 
             if user and bcrypt.checkpw(password.encode('utf-8'), user[2]):
                 session['user_id'] = user[0]
-                flash('Login successful!')
                 return redirect(url_for('dashboard'))
             else:
                 flash('Invalid username or password.')
