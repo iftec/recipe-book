@@ -1,18 +1,17 @@
-<!-- Renders a page displaying the logged in user's added recipes.
-
-Fetches the user's recipes from the database and displays them in a grid layout. Allows the user to add recipes to their favorites, edit, delete, or print them.
-
-Contains links in the navbar for site navigation and a search bar. Uses Jinja templating and custom CSS for styling.
-
--->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Recipes</title>
     <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
-    <title>Document</title>
+    <meta name="description"
+        content="Store all your own delicious recipes in your own recipe book. From appetizers to desserts, find inspiration for your next meal.">
+    <meta name="keywords" content="recipes, cooking, food, meals, ingredients, dishes">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="English">
 </head>
 
 <body>
@@ -64,11 +63,8 @@ Contains links in the navbar for site navigation and a search bar. Uses Jinja te
                             </div>
                         </div>
                         <div class="recipe-details">
-
-
                             <!-- Display Ingredients as a List -->
                             <p><strong class="other-titles">Ingredients:</strong></p>
-
                             {% if recipe[2] %}
                             <ul>
                                 {% for ingredient in recipe[2].split('\n') %}
@@ -76,17 +72,13 @@ Contains links in the navbar for site navigation and a search bar. Uses Jinja te
                                 {% endfor %}
                             </ul>
                             {% endif %}
-
-
                             <div class="notes">
                                 <p><strong class="other-titles">Notes:</strong>
-                                <div class="text-notes"> {{ recipe[4] }}</div>
+                                    <div class="text-notes"> {{ recipe[4] }}</div>
                                 </p>
                             </div>
                             <br>
-
                         </div>
-
                     </div>
                     <div class="button-group">
                         <!-- Add to Favorites Button -->
@@ -94,28 +86,24 @@ Contains links in the navbar for site navigation and a search bar. Uses Jinja te
                         <button onclick="addToFavorites({{ recipe[0] }})" class="button3-style">Add to
                             Favorites</button>
                         {% endif %}
-
                         <!-- Edit Button -->
                         <form method="get" action="{{ url_for('edit_recipe', recipe_id=recipe[0]) }}"
                             style="display: inline;">
                             <input class="button3-style" type="submit" value="Edit Recipe">
                         </form>
-
-                        <form id="deleteForm{{ recipe[0] }}" method="post" action="{{ url_for('delete_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
-                            <input class="button3-style" type="button" value="Delete Recipe" onclick="confirmDelete({{ recipe[0] }})">
+                        <form id="deleteForm{{ recipe[0] }}" method="post"
+                            action="{{ url_for('delete_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
+                            <input class="button3-style" type="button" value="Delete Recipe"
+                                onclick="confirmDelete({{ recipe[0] }})">
                         </form>
                         <a class="button3-style" onclick="printPageArea({{ recipe[0] }})">Print Recipe</a>
-
                     </div>
-
                     <hr>
                 </div>
                 {% endfor %}
-
             </div>
         </div>
     </div>
-
     <script src="/static/scripts/script.js"></script>
 </body>
 

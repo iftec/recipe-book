@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
     <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
+    <meta name="description"
+        content="Store all your own delicious recipes in your own recipe book. From appetizers to desserts, find inspiration for your next meal.">
+    <meta name="keywords" content="recipes, cooking, food, meals, ingredients, dishes">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="English">
 </head>
+
 <body>
     <div class="login-container">
         {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
 
         <h1>Sign Up</h1>
         <form method="post">
-            <p><label for="username">Username:</label>
-            <input type="text" name="username" id="username" autocomplete="username" style="width:50%; height:40px;" required>
+            <p>
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" autocomplete="username"
+                    style="width:50%; height:40px;" required>
             </p>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" autocomplete="new-password" style="width:50%; height:40px;" required>
-            <br>
+            <p>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" autocomplete="new-password"
+                    style="width:50%; height:40px;" required>
+            </p>
             <input type="submit" class="button1-style" value="Sign Up">
         </form>
         <br>
     </div>
 </body>
+
 </html>

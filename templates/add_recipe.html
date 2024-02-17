@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
     <title>Add Recipe</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
+    <meta name="description"
+        content="Store all your own delicious recipes in your own recipe book. From appetizers to desserts, find inspiration for your next meal.">
+    <meta name="keywords" content="recipes, cooking, food, meals, ingredients, dishes">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="English">
 </head>
+
 <body>
     <nav>
         <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
@@ -13,50 +21,52 @@
         <a href="{{ url_for('favorites') }}">Favorites</a>
         <a href="{{ url_for('instructions') }}">Instructions</a>
         <a href="{{ url_for('dashboard') }}">Home</a>
-          <div class="search-container">
-        <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
-            <label for="search"></label>
-            <input type="text" name="search" id="search" required>
-            <input type="submit" class="button1-style" value="Search">
-        </form>
-          </div>
+        <div class="search-container">
+            <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
+                <label for="search"></label>
+                <input type="text" name="search" id="search" required>
+                <input type="submit" class="button1-style" value="Search">
+            </form>
+        </div>
     </nav>
+
     <div class="book-container">
         <div class="field-container">
-   
-    <img src= "/static/images/border.png" alt="Border Image">
-    <div class="add-recipe">  
+            <img src="/static/images/border.png" alt="Border Image">
+            <div class="add-recipe">
+                <!-- This space intentionally left blank for styling purposes -->
+            </div>
+            <img src="/static/images/borderb.png" alt="Border Image">
+            <h1>Add a Recipe</h1>
+            <form method="post" class="form-width" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Recipe Title:</label>
+                    <input type="text" name="title" id="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Recipe Image:</label>
+                    <input type="file" name="image" id="image" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="ingredients">Ingredients:</label>
+                    <textarea name="ingredients" id="ingredients" rows="10" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="instructions">Method:</label>
+                    <textarea name="instructions" id="instructions" rows="10" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes:</label>
+                    <textarea name="notes" id="notes" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <input class="button1-style" type="submit" value="Add Recipe">
+                </div>
+            </form>
+        </div>
     </div>
-    <img src="/static/images/borderb.png" alt="Border Image">
-            <h1>Add a Recipe</h1>     
-<form method="post" class="form-width" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="title">Recipe Title:</label>
-        <input type="text" name="title" id="title" required>
-    </div>
-    <div class="form-group">
-        <label for="image" >Recipe Image:</label>
-        <input  type="file" name="image" id="image"  accept="image/*">
-    </div>
-    <div class="form-group">
-        <label for="ingredients">Ingredients:</label>
-        <textarea name="ingredients" id="ingredients" rows="10" required></textarea> 
-    </div>
-    <div class="form-group">
-        <label for="instructions">Method:</label>
-        <textarea name="instructions" id="instructions" rows="10" required></textarea>
-    </div>
-    <div class="form-group">
-        <label for="notes">Notes:</label>
-        <textarea name="notes" id="notes" rows="5"></textarea>
-    </div>
-    <div class="form-group">
 
-        <input class = "button1-style" type="submit" value="Add Recipe">
-    </div>
-    </form>
-</div>
-</div>
     <script src="/static/scripts/script.js"></script>
 </body>
+
 </html>

@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructions</title>
     <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
-    <title>Document</title>
+    <meta name="description"
+        content="Store all your own delicious recipes in your own recipe book. From appetizers to desserts, find inspiration for your next meal.">
+    <meta name="keywords" content="recipes, cooking, food, meals, ingredients, dishes">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="English">
 </head>
+
 <body>
     <nav>
         <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
@@ -13,61 +21,68 @@
         <a href="{{ url_for('favorites') }}">Favorites</a>
         <a href="{{ url_for('instructions') }}">Instructions</a>
         <a href="{{ url_for('dashboard') }}">Home</a>
-          <div class="search-container">
-        <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
-            <label for="search"></label>
-            <input type="text" name="search" id="search" required>
-            <input type="submit" class="button1-style" value="Search">
-        </form>
-          </div>
+        <div class="search-container">
+            <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
+                <label for="search"></label>
+                <input type="text" name="search" id="search" required>
+                <input type="submit" class="button1-style" value="Search">
+            </form>
+        </div>
     </nav>
+
     <div class="book-container">
         <div class="field-container">
-   
-    <img src= "/static/images/border.png" alt="Border Image">
-    <div class="instructions">  
-    </div>
-    <img src="/static/images/borderb.png" alt="Border Image">
-    <h1>Here to Help</h1>
-    <h2>A place to add and store your very own recipes without them getting lost.</h2>
-    <br>
-    In your recipe book you can, add new recipes, view your recipes, add and view your favorites and
-    search your recipes by ingredients or name.
-    <br>
-    You can even upload your own pictures for your recipes
-    <br>
-   <h3>To add a recipe to your recipe book: </h3>
-   <ul>
-       <li>Click on the Add Recipe tab, this will open the add recipe page.</li>
-       <li>Give your recipe a title.</li>
-       <li>Upload an image (if you have one) or a default one will be assigned.</li>
-       <li>Add the ingredients and the method for the recipe 
-        <br>(The recipe method will be automatically numbered for you).</li>
-       <li>Add any notes if you wish.</li>
-       <li>Click on the Add Recipe button to add your recipe to your recipe book.</li>
-   </ul>
 
-    <h3>To view your recipes: </h3>
-   <ul>
-       <li>Click on the Your Recipes tab, this will open the recipes page.</li>
-       <li>You can add your recipe to your favorites list.</li>
-       <li>Edit your recipe.</li>
-       <li>Delete your recipe.</li>
-       <li>Print your recipe.</li>
-   </ul>
-   <h3>To view your favorites: </h3>
-   <ul>
-       <li>Click on the Your Favorites tab, this will open your favorites page.</li>
-       <li>You remove a recipe from your list.</li>
-       <li>Print a recipe</li>
-   </ul>
-   
-   <h3>Searching for recipes: </h3>
-   <ul>
-       <li>The search box will allow you to search for any recipe by name or ingredience.</li>
-       <li>There are a few recipes in the database to get you started.</li>
-       <li>You can add any recipe from the search results to your favorites list.</li>
-   </ul> 
-   <script src="/static/scripts/script.js"></script>
+            <img src="/static/images/border.png" alt="Border Image">
+            <div class="instructions">
+                <!-- This space intentionally left blank for styling purposes -->
+            </div>
+            <img src="/static/images/borderb.png" alt="Border Image">
+            <h1>Here to Help</h1>
+            <h2>A place to add and store your very own recipes without them getting lost.</h2>
+            <br>
+            <div class="instructions-text">In your recipe book you can, add new recipes, view your recipes, add and
+                view your favorites and search your recipes by ingredients or name.
+                <br>
+                You can even upload your own pictures for your recipes
+            </div>
+            <br>
+            <h3>To add a recipe to your recipe book: </h3>
+            <ul>
+                <li>Click on the Add Recipe tab, this will open the add recipe page.</li>
+                <li>Give your recipe a title.</li>
+                <li>Upload an image (if you have one) or a default one will be assigned.</li>
+                <li>Add the ingredients and the method for the recipe
+                    <br>(The recipe method will be automatically numbered for you).</li>
+                <li>Add any notes if you wish.</li>
+                <li>Click on the Add Recipe button to add your recipe to your recipe book.</li>
+            </ul>
+
+            <h3>To view your recipes: </h3>
+            <ul>
+                <li>Click on the Your Recipes tab, this will open the recipes page.</li>
+                <li>You can add your recipe to your favorites list.</li>
+                <li>Edit your recipe.</li>
+                <li>Delete your recipe.</li>
+                <li>Print your recipe.</li>
+            </ul>
+            <h3>To view your favorites: </h3>
+            <ul>
+                <li>Click on the Your Favorites tab, this will open your favorites page.</li>
+                <li>You remove a recipe from your list.</li>
+                <li>Print a recipe</li>
+            </ul>
+
+            <h3>Searching for recipes: </h3>
+            <ul>
+                <li>The search box will allow you to search for any recipe by name or ingredient.</li>
+                <li>There are a few recipes in the database to get you started.</li>
+                <li>You can add any recipe from the search results to your favorites list.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="/static/scripts/script.js"></script>
 </body>
+
 </html>

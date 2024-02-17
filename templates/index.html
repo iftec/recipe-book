@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/styles/book.css">
-
-    <title>Recipe Website</title>
+    <title>Your Recipe Book</title>
+	<meta name="description" content="Store all your own delicious recipes in your own recipe book. From appetizers to desserts, find inspiration for your next meal.">
+    <meta name="keywords" content="recipes, cooking, food, meals, ingredients, dishes">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
+    <meta name="language" content="English">
 </head>
 <body>
-    <div class="card">
-<div class="imgBox">
+    <section class="card">
+	<section class="imgBox">
 		<div class="bark"></div>
 			<img src="/static/images/book_cover.jpeg"  alt="book cover">
-		</div>
+	</section>
 		<div class="details">
 			<h4 class="color1">Welcome to your Recipe Book!</h2>
 			<h4 class="color2 margin">Creat and save your favorite recipes</h3>
@@ -22,10 +26,9 @@
 			<p>Add your best ones to your favorites list.</p>
 			<p>Search by recipe or ingredience </p>
 			<p>To get started <a href="{{ url_for('signup') }}">Sign Up</a> or
-        <a href="{{ url_for('login') }}">Log In</a></p>
-			
+        	<a href="{{ url_for('login') }}">Log In</a></p>
 			
 		</div>
-	</div>
+	</section>
 </body>
 </html>
