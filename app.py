@@ -85,9 +85,10 @@ def signup():
     return render_template('signup.html')
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        # Handle login logic for POST requests
         username = request.form['username']
         password = request.form['password']
 
@@ -104,6 +105,7 @@ def login():
                 flash('Invalid username or password.')
 
     return render_template('login.html')
+
 
 
 @app.route('/search_recipes', methods=['GET'])
