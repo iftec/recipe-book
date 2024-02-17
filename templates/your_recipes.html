@@ -101,12 +101,9 @@ Contains links in the navbar for site navigation and a search bar. Uses Jinja te
                             <input class="button3-style" type="submit" value="Edit Recipe">
                         </form>
 
-                        <!-- Delete Button -->
-                        <form method="post" action="{{ url_for('delete_recipe', recipe_id=recipe[0]) }}"
-                            style="display: inline;">
-                            <input class="button3-style" type="submit" value="Delete Recipe">
+                        <form id="deleteForm{{ recipe[0] }}" method="post" action="{{ url_for('delete_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
+                            <input class="button3-style" type="button" value="Delete Recipe" onclick="confirmDelete({{ recipe[0] }})">
                         </form>
-
                         <a class="button3-style" onclick="printPageArea({{ recipe[0] }})">Print Recipe</a>
 
                     </div>

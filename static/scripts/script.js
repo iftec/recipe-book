@@ -94,3 +94,12 @@ function showNotification(message, isSuccess) {
     }
 }
 
+function confirmDelete(recipeId) {
+    if (confirm("Are you sure you want to delete this recipe?")) {
+        // If user confirms, submit the form
+        document.getElementById('deleteForm' + recipeId).submit();
+    } else {
+        // If user cancels, do nothing
+        return false;
+    }
+}
