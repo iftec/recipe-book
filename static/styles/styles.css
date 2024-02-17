@@ -377,6 +377,21 @@ nav a.selected {
     box-sizing: border-box;
 }
 
+
+input[type="text"] {
+   
+    margin-top: 25px;
+    margin-bottom: auto;
+    font-size: 17px;
+    border: 1px solid grey;
+}
+
+input[type="submit"] {
+    margin-top: 22px;
+    padding: 1px 20px;
+    background-color: #5f0d19;
+}
+
 /* Style for the submit button */
 .form-group input[type="submit"] {
     width: auto;
@@ -401,6 +416,146 @@ nav a.selected {
     box-sizing: border-box;
 }
 
-#search {
-    width: 50%
+#searchForm.form-group {
+    display:flex;
+    width: 90%
+    
+}
+
+/* Styles for device breakpoints */
+
+@media only screen and (max-width: 810px) {
+ 
+
+    .button3-style {
+        font-family: 'Indie Flower', Arial, sans-serif, cursive !important;
+        width: auto;
+        padding: 10px 7px;
+        font-size: 16px;
+        color: #eed9c4;
+        margin-top: 0;
+        margin-left: 15px;
+    }
+
+    nav {
+        
+        font-size: 16px;
+        margin: 0 10px 10px 0;
+    }
+
+    input[type="submit"] {
+        margin-top: 22px;
+        padding: 1px 20px;
+    }
+
+    input[type="text"] {
+        margin-top: 19px;
+    }
+
+    .button1-style {
+        width: auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px;
+    }
+
+    .button-group {
+      
+        font-size: 16px;
+        margin: 5px 43px 5px 16px;
+        padding-bottom: 6px;
+    }
+}
+
+
+
+
+
+@media only screen and (max-width: 1024px) and (min-width:830px) {
+    nav {
+        
+        background-color: #5f0d19;
+        overflow: hidden;
+        font-size: 24px;
+        margin: 0 10px 10px 0;
+    }
+
+}
+
+
+
+@media only screen and (max-width: 1400px) {
+    .recipe-details {
+        padding-left: 40px;
+    }
+}
+
+@media only screen and (max-width: 1600px)  and (min-width: 810px) {
+    nav a {
+       
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        margin-top: 10px;
+        margin-left: 0px;
+    }
+
+    nav {
+        background-image: none;
+        background-color: #5f0d19;
+        overflow: hidden;
+        font-size: 24px;
+        margin: 0 10px 10px 0;
+    }
+
+    .button-group {
+        background-image: none;
+        background-color: #5f0d19;
+        overflow: hidden;
+        font-size: 36px;
+        margin: 0;
+        padding-bottom: 0;
+    }
+
+    .button3-style {
+       
+        padding: 10px 7px;
+        font-size: 24px;
+        margin-top: 0px;
+        margin-left: 15px;
+      
+    }
+
+    
+
+}
+
+@media only screen and (min-width: 1600px) {
+    input[type="text"] {
+        margin-top: 35px;
+    }
+    
+    input[type="submit"] {
+        margin-top: 32px; 
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .book-container {
+        width: 100%;
+    }
+    nav a {
+        padding: 14px 5px !important;   
+   
+    } 
+
+
+       
+}
+
+@media screen and (max-width: 650px) {
+    nav {
+        display: none;
+    }
+
 }
