@@ -71,9 +71,20 @@ def signup():
         username = request.form['username']
         password = request.form['password']
 
-        # Hash the password
+          # Check if the username already exists
+        with sqlite3.connect(DATABASE) as connection:
+            cursor = connection.cursor()
+            cursor.execute('SELECT * FROM users WHERE username=?', (username,))
+            existing_user = cursor.fetchone()
+
+            if existing_user:
+                flash('Username already exists. Please choose a different one.')
+                return redirect(url_for('signup'))
+
+        # Hash the password before storing it
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
+        # Insert the new user into the database
         with sqlite3.connect(DATABASE) as connection:
             cursor = connection.cursor()
             cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, hashed_password))
