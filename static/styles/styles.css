@@ -70,8 +70,7 @@ a.button2-style {
     margin: 10px;
     background-color: #e2d7bb;
     text-decoration: none;
-    border: 2px #000000;
-    border-style: outset;
+    border: 2px solid #000000; /* Changed border style */
 }
 
 .button3-style {
@@ -222,8 +221,6 @@ input[type="file"]::file-selector-button:hover {
     min-height: 300px;
 }
 
-
-
 #image_container {
     width: 400px;
 }
@@ -289,6 +286,7 @@ input[type="file"]::file-selector-button:hover {
 .instructions-text {
     margin-left: 30px;
 }
+
 .welcome {
     background: url('/static/images/welcomel.png') center center;
     width: 90%;
@@ -360,8 +358,6 @@ nav a.selected {
     max-width: 100%;
 }
 
-
-
 /* Style for input fields and text areas */
 .form-group input[type="text"],
 .form-group input[type="file"],
@@ -380,9 +376,7 @@ nav a.selected {
     box-sizing: border-box;
 }
 
-
-input[type="text"] {
-   
+input[type="text"] {   
     margin-top: 25px;
     margin-bottom: auto;
     font-size: 17px;
@@ -419,17 +413,143 @@ input[type="submit"] {
     box-sizing: border-box;
 }
 
-#searchForm.form-group {
+#searchForm.form-group { 
     display:flex;
-    width: 90%
+    width: 90%;
+}
+
+/* Hamburger menu styles */
+.toggler {
+    z-index: 2;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.hamburger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    padding: 0.6rem;
+
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.hamburger > div {
+    position: relative;
+    top: 0;
+    left: 0;
+    background: #5f0d19;
+    height: 2px;
+    width: 60%;
+    transition: all 0.4s ease;
+}
+
+.hamburger > div::before,
+.hamburger > div::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    background: #5f0d19;
+    width: 100%;
+    height: 2px;
+    transition: all 0.4s ease;
+}
+
+.hamburger > div::after {
+    top: 10px;
+}
+
+.toggler:checked + .hamburger > div {
+    background: #5f0d19;
+}
+
+
+.toggler:checked + .hamburger > div::before {
+    top: 0;
+    transform: rotate(45deg);
+    background: black;
+}
+
+.toggler:checked + .hamburger > div::after {
+    top: 0;
+    transform: rotate(135deg);
+    background: black;
+}
+
+.menu {
+    display: none;
+    
     
 }
 
+.menu > div > ul {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 25px;
+    padding-left: 10px;
+    visibility: hidden;
+}
+
+.menu > div > ul > li {
+    background-color: #5f0d19;
+    list-style: none;
+    padding: 5px;
+}
+
+.menu > div > ul > li > a {
+    color: #f3e3c2;
+    
+    text-decoration: none;
+    font-size: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.toggler:checked ~ .menu > div > ul {
+    transition: visibility 0.4s ease;
+    transition-delay: 0.1s;
+    visibility: visible;
+   
+}
+
+.toggler:checked ~ .menu > div > ul > li > a:hover {
+    color: orange;
+}
+
+
 /* Styles for device breakpoints */
 
-@media only screen and (max-width: 810px) {
- 
+@media screen and (max-width: 768px) {
+.menu {
+    display: flex;
+    transition: all 0.4s ease;
+    float: left;
+    background-color: #5f0d19;
+}
 
+.hamburger {
+    display: flex
+}
+
+    nav {
+        display: none;
+    }
+  
+    .search-container {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 810px) {
     .button3-style {
         font-family: 'Indie Flower', Arial, sans-serif, cursive !important;
         width: auto;
@@ -441,7 +561,6 @@ input[type="submit"] {
     }
 
     nav {
-        
         font-size: 16px;
         margin: 0 10px 10px 0;
     }
@@ -463,29 +582,20 @@ input[type="submit"] {
     }
 
     .button-group {
-      
         font-size: 16px;
         margin: 5px 43px 5px 16px;
         padding-bottom: 6px;
     }
 }
 
-
-
-
-
 @media only screen and (max-width: 1024px) and (min-width:830px) {
     nav {
-        
         background-color: #5f0d19;
         overflow: hidden;
         font-size: 24px;
         margin: 0 10px 10px 0;
     }
-
 }
-
-
 
 @media only screen and (max-width: 1400px) {
     .recipe-details {
@@ -493,9 +603,13 @@ input[type="submit"] {
     }
 }
 
-@media only screen and (max-width: 1600px)  and (min-width: 810px) {
+@media only screen and (max-width: 1600px) and (min-width: 810px) {
+
+    #search {
+        min-width: 240px;
+    }
+
     nav a {
-       
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
@@ -521,16 +635,11 @@ input[type="submit"] {
     }
 
     .button3-style {
-       
         padding: 10px 7px;
         font-size: 24px;
         margin-top: 0px;
         margin-left: 15px;
-      
     }
-
-    
-
 }
 
 @media only screen and (min-width: 1600px) {
@@ -549,11 +658,7 @@ input[type="submit"] {
     }
     nav a {
         padding: 14px 5px !important;   
-   
     } 
-
-
-       
 }
 
 @media screen and (max-width: 650px) {
@@ -562,7 +667,5 @@ input[type="submit"] {
     }
     .book-container {
         max-height: 100%;
-       
     }
-
 }
