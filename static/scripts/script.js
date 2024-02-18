@@ -26,6 +26,16 @@ async function makeFetchRequest(url, method, data, successMessage, errorMessage)
     }
 }
 
+// Function to toggle the menu
+function toggleMenu() {
+    const menu = document.querySelector('.menu');
+
+    if (menu.style.width === '100%') {
+        menu.style.width = '0'; // Close the menu
+    } else {
+        menu.style.width = '100%'; // Open the menu
+    }
+}
 
 function submitSearchForm() {
     document.getElementById('searchForm').submit();
@@ -103,3 +113,9 @@ function confirmDelete(recipeId) {
         return false;
     }
 }
+
+// Event listener to toggle the menu
+document.addEventListener('DOMContentLoaded', function () {
+    const toggler = document.querySelector('.toggler');
+    toggler.addEventListener('change', toggleMenu);
+});
