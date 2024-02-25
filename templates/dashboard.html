@@ -16,7 +16,7 @@
 
 <body>
     <!-- Hamburger menu toggler -->
-    <input type="checkbox" class="toggler">
+    <input type="checkbox" class="toggler" id="hamburger">
 
     <!-- Hamburger menu button -->
     <div class="hamburger">
@@ -32,6 +32,7 @@
                 <li><a href="{{ url_for('favorites') }}">Favorites</a></li>
                 <li><a href="{{ url_for('instructions') }}">Instructions</a></li>
                 <li><a href="{{ url_for('dashboard') }}">Home</a></li>
+                <li><a href="{{ url_for('search') }}">Search</a></li>
                 
             </ul>
             
