@@ -12,19 +12,44 @@
     <title>Search Results</title>
 </head>
 <body>
-      <nav>
+        <!-- Hamburger menu toggler -->
+    <input type="checkbox" class="toggler" id="hamburger">
+
+    <!-- Hamburger menu button -->
+    <div class="hamburger">
+        <div></div>
+    </div>
+
+    <!-- Menu -->
+    <div class="menu">
+        <div>
+            <ul>
+                <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
+                <li><a href="{{ url_for('your_recipes') }}">Your Recipes</a></li>
+                <li><a href="{{ url_for('favorites') }}">Favorites</a></li>
+                <li><a href="{{ url_for('instructions') }}">Instructions</a></li>
+                <li><a href="{{ url_for('dashboard') }}">Home</a></li>
+                <li><a href="{{ url_for('search') }}">Search</a></li>
+                
+            </ul>
+            
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
         <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
         <a href="{{ url_for('your_recipes') }}">Your Recipes</a>
         <a href="{{ url_for('favorites') }}">Favorites</a>
         <a href="{{ url_for('instructions') }}">Instructions</a>
         <a href="{{ url_for('dashboard') }}">Home</a>
-          <div class="search-container">
-        <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
-            <label for="search"></label>
-            <input type="text" name="search" id="search" required>
-            <input type="submit" class="button1-style" value="Search">
-        </form>
-          </div>
+        <div class="search-container">
+            <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
+                <label for="search"></label>
+                <input type="text" name="search" id="search" required>
+                <input type="submit" class="button1-style" value="Search">
+            </form>
+        </div>
     </nav>
     <div class="book-container">
         <div class="field-container">
