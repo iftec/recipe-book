@@ -109,9 +109,9 @@ input[type="file"]::file-selector-button:hover {
 
  /* containers */
 .login-container {
-    width: 35%;
+    width: 65%;
     min-height: 200px;
-    max-height: 30%;
+    max-height: 60%;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -150,6 +150,7 @@ input[type="file"]::file-selector-button:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: auto;
     margin: auto;
+    overflow-y: scroll
 }
 
 .recipe-container {
@@ -311,7 +312,7 @@ nav {
     background: url('/static/images/bookmark.png') no-repeat;
     overflow: hidden;
     font-size: 36px;
-    margin: 0 10px 10px 40px;
+    margin: 0px, 10px 10px 0px;
 }
 
 nav a {
@@ -364,7 +365,7 @@ nav a.selected {
 .form-group textarea {
     width: 98%;
     font-size: 24px;
-    padding: 10px;
+    padding: 1px;
     box-sizing: border-box;
 }
 
@@ -392,7 +393,7 @@ input[type="submit"] {
 /* Style for the submit button */
 .form-group input[type="submit"] {
     width: auto;
-    padding: 10px 20px;
+    padding: 0px 10px;
     font-size: 24px;
     color: #e2d7bb;
 }
@@ -414,9 +415,18 @@ input[type="submit"] {
 }
 
 #searchForm.form-group { 
+    margin-left: 25px;
     display:flex;
-    width: 90%;
+    margin-top: 9px;
+    width: 300px;
 }
+
+.login-form {
+margin-left: 25%;
+}
+
+
+
 
 /* Hamburger menu styles */
 .toggler {
@@ -527,8 +537,58 @@ input[type="submit"] {
 
 
 /* Styles for device breakpoints */
+@media screen and (max-width: 650px) {
+    .form-group input[type="text"],
+    .form-group input[type="file"],
+    .form-group textarea {
+        font-size: 16px;
+    }
 
-@media screen and (max-width: 768px) {
+    .recipe-title {
+        font-size: 18px;
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+
+    h1 {
+        font-size: 28px;
+    }
+    
+
+    .welcome {
+        padding-top: 0%;
+    }
+
+    .add-recipe {
+        padding-top: 0%;
+    }
+
+    .edit-recipe {
+        padding-top: 0%;
+    }
+
+    .instructions {
+        padding-top: 0%;
+    }
+
+    .your-favorites {
+        padding-top: 0%;
+    }
+
+    .your-recipes {
+        padding-top: 0%;
+    }
+
+    .login-form {
+        margin-left: 3%;
+        }
+
+}
+
+@media screen and (max-width: 816px) {
 .menu {
     display: flex;
     transition: all 0.4s ease;
@@ -547,6 +607,31 @@ input[type="submit"] {
     .search-container {
         display: block;
     }
+
+    .book-container {
+        height: 100%;
+    }
+   
+
+    .login-container {
+        height: 40%;
+    }
+
+    #searchForm.form-group {
+       display: block;
+    }
+
+    .form-group input[type="submit"] {
+    padding: 0%;
+    font-size: 18px;
+    }
+    h1 {
+        font-size: 2rem
+    }
+
+    .login-form {
+        margin-left: 19%;
+        }
 }
 
 @media only screen and (max-width: 810px) {
@@ -601,13 +686,19 @@ input[type="submit"] {
     .recipe-details {
         padding-left: 40px;
     }
+
+    nav {
+        background-image: none;
+        background-color: #5f0d19;
+        overflow: hidden;
+        font-size: 30px;
+        margin: 0 10px 10px 0;
+    }
 }
 
 @media only screen and (max-width: 1600px) and (min-width: 810px) {
 
-    #search {
-        min-width: 240px;
-    }
+
 
     nav a {
         text-align: center;
@@ -617,13 +708,7 @@ input[type="submit"] {
         margin-left: 0px;
     }
 
-    nav {
-        background-image: none;
-        background-color: #5f0d19;
-        overflow: hidden;
-        font-size: 24px;
-        margin: 0 10px 10px 0;
-    }
+  
 
     .button-group {
         background-image: none;
@@ -659,6 +744,10 @@ input[type="submit"] {
     nav a {
         padding: 14px 5px !important;   
     } 
+
+    h1 {
+        font-size: 1.5rem;
+    }
 }
 
 @media screen and (max-width: 650px) {
@@ -668,4 +757,25 @@ input[type="submit"] {
     .book-container {
         max-height: 100%;
     }
+}
+
+@media screen and (max-width: 450px) {
+    .login-container {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    nav {
+         font-size: 24px;
+    }
+
+    #searchForm.form-group {
+        margin-top: 4px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+    
 }
