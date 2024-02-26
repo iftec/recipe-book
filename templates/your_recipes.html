@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Recipes</title>
     <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
-    <meta name="description"
-        content="Store all your own delicious recipes in your own recipe book. From appetizers to desserts, find inspiration for your next meal.">
+    <meta name="description" content="Store all your own delicious recipes in your own recipe book. From appetizers to desserts, find inspiration for your next meal.">
     <meta name="keywords" content="recipes, cooking, food, meals, ingredients, dishes">
     <meta name="robots" content="index, follow">
     <meta name="revisit-after" content="7 days">
@@ -15,54 +14,51 @@
 </head>
 
 <body>
-      <!-- Hamburger menu toggler -->
-      <input type="checkbox" class="toggler" id="hamburger">
+    <!-- Hamburger menu toggler -->
+    <input type="checkbox" class="toggler" id="hamburger">
 
-      <!-- Hamburger menu button -->
-      <div class="hamburger">
-          <div></div>
-      </div>
-  
-      <!-- Menu -->
-      <div class="menu">
-          <div>
-              <ul>
-                  <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
-                  <li><a href="{{ url_for('your_recipes') }}">Your Recipes</a></li>
-                  <li><a href="{{ url_for('favorites') }}">Favorites</a></li>
-                  <li><a href="{{ url_for('instructions') }}">Instructions</a></li>
-                  <li><a href="{{ url_for('dashboard') }}">Home</a></li>
-                  <li><a href="{{ url_for('search') }}">Search</a></li>
-                  
-              </ul>
-              
-          </div>
-      </div>
-  
-      <!-- Navigation -->
-      <nav>
-          <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
-          <a href="{{ url_for('your_recipes') }}">Your Recipes</a>
-          <a href="{{ url_for('favorites') }}">Favorites</a>
-          <a href="{{ url_for('instructions') }}">Instructions</a>
-          <a href="{{ url_for('dashboard') }}">Home</a>
-          <div class="search-container">
-              <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
-                  <label for="search"></label>
-                  <input type="text" name="search" id="search" required>
-                  <input type="submit" class="button1-style" value="Search">
-              </form>
-          </div>
-      </nav>
-    <div class="book-container">
+    <!-- Hamburger menu button -->
+    <div class="hamburger">
+        <div></div>
+    </div>
+
+    <!-- Menu -->
+    <div class="menu">
+        <div>
+            <ul>
+                <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
+                <li><a href="{{ url_for('your_recipes') }}">Your Recipes</a></li>
+                <li><a href="{{ url_for('favorites') }}">Favorites</a></li>
+                <li><a href="{{ url_for('instructions') }}">Instructions</a></li>
+                <li><a href="{{ url_for('dashboard') }}">Home</a></li>
+                <li><a href="{{ url_for('search') }}">Search</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="{{ url_for('add_recipe') }}" {% if 'add_recipe' in request.endpoint %}class="selected"{% endif %}>Add Recipe</a>
+        <a href="{{ url_for('your_recipes') }}" {% if 'your_recipes' in request.endpoint %}class="selected"{% endif %}>Your Recipes</a>
+        <a href="{{ url_for('favorites') }}" {% if 'favorites' in request.endpoint %}class="selected"{% endif %}>Favorites</a>
+        <a href="{{ url_for('instructions') }}" {% if 'instructions' in request.endpoint %}class="selected"{% endif %}>Instructions</a>
+        <a href="{{ url_for('dashboard') }}" {% if 'dashboard' in request.endpoint %}class="selected"{% endif %}>Home</a>
+        <div class="search-container">
+            <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
+                <label for="search"></label>
+                <input type="text" name="search" id="search" required>
+                <input type="submit" class="button1-style" value="Search">
+            </form>
+        </div>
+    </nav>
+
+    <div class="book-container" role="main">
         <div class="field-container">
-
             <img src="/static/images/border.png" alt="Border Image">
-            <div class="your-recipes">
-            </div>
+            <div class="your-recipes"></div>
             <img src="/static/images/borderb.png" alt="Border Image">
             <h1>Your Recipes</h1>
-            <div class="recipes-grid">
+            <div class="recipes-grid" aria-label="List of Recipes">
                 <!-- Display user's recipes -->
                 {% for recipe in recipes %}
                 <div class="recipe-item">
@@ -84,7 +80,6 @@
                                     {% endfor %}
                                 </ol>
                                 {% endif %}
-                                <br>
                             </div>
                         </div>
                         <div class="recipe-details">
@@ -102,28 +97,22 @@
                                     <div class="text-notes"> {{ recipe[4] }}</div>
                                 </p>
                             </div>
-                            <br>
                         </div>
                     </div>
                     <div class="button-group">
                         <!-- Add to Favorites Button -->
                         {% if recipe[0] not in favorite_recipe_ids %}
-                        <button onclick="addToFavorites({{ recipe[0] }})" class="button3-style">Add to
-                            Favorites</button>
+                        <button onclick="addToFavorites({{ recipe[0] }})" class="button3-style" aria-label="Add to Favorites">Add to Favorites</button>
                         {% endif %}
                         <!-- Edit Button -->
-                        <form method="get" action="{{ url_for('edit_recipe', recipe_id=recipe[0]) }}"
-                            style="display: inline;">
-                            <input class="button3-style" type="submit" value="Edit Recipe">
+                        <form method="get" action="{{ url_for('edit_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
+                            <input class="button3-style" type="submit" value="Edit Recipe" aria-label="Edit Recipe">
                         </form>
-                        <form id="deleteForm{{ recipe[0] }}" method="post"
-                            action="{{ url_for('delete_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
-                            <input class="button3-style" type="button" value="Delete Recipe"
-                                onclick="confirmDelete({{ recipe[0] }})">
+                        <form id="deleteForm{{ recipe[0] }}" method="post" action="{{ url_for('delete_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
+                            <input class="button3-style" type="button" value="Delete Recipe" onclick="confirmDelete({{ recipe[0] }})" aria-label="Delete Recipe">
                         </form>
-                        <a class="button3-style" onclick="printPageArea({{ recipe[0] }})">Print Recipe</a>
+                        <a class="button3-style" onclick="printPageArea({{ recipe[0] }})" aria-label="Print Recipe">Print Recipe</a>
                     </div>
-                    <hr>
                 </div>
                 {% endfor %}
             </div>

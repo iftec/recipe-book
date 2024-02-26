@@ -13,15 +13,15 @@
 </head>
 <body>
       <!-- Hamburger menu toggler -->
-      <input type="checkbox" class="toggler"id="hamburger">
+      <input type="checkbox" class="toggler" id="hamburger" aria-label="Menu Toggler">
 
       <!-- Hamburger menu button -->
-      <div class="hamburger">
+      <div class="hamburger" aria-hidden="true">
           <div></div>
       </div>
   
       <!-- Menu -->
-      <div class="menu">
+      <div class="menu" aria-hidden="true">
           <div>
               <ul>
                   <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
@@ -38,15 +38,15 @@
   
       <!-- Navigation -->
       <nav>
-          <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
-          <a href="{{ url_for('your_recipes') }}">Your Recipes</a>
-          <a href="{{ url_for('favorites') }}">Favorites</a>
-          <a href="{{ url_for('instructions') }}">Instructions</a>
-          <a href="{{ url_for('dashboard') }}">Home</a>
+        <a href="{{ url_for('add_recipe') }}" {% if 'add_recipe' in request.endpoint %}class="selected"{% endif %}>Add Recipe</a>
+        <a href="{{ url_for('your_recipes') }}" {% if 'your_recipes' in request.endpoint %}class="selected"{% endif %}>Your Recipes</a>
+        <a href="{{ url_for('favorites') }}" {% if 'favorites' in request.endpoint %}class="selected"{% endif %}>Favorites</a>
+        <a href="{{ url_for('instructions') }}" {% if 'instructions' in request.endpoint %}class="selected"{% endif %}>Instructions</a>
+        <a href="{{ url_for('dashboard') }}" {% if 'dashboard' in request.endpoint %}class="selected"{% endif %}>Home</a>
           <div class="search-container">
               <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
                   <label for="search"></label>
-                  <input type="text" name="search" id="search" required>
+                  <input type="text" name="search" id="search" aria-label="Search for recipes" required>
                   <input type="submit" class="button1-style" value="Search">
               </form>
           </div>
@@ -62,22 +62,22 @@
             <div class="form-width">
             <form class="form-group" method="post" action="{{ url_for('edit_recipe', recipe_id=recipe[0]) }}" enctype="multipart/form-data">
                 <label for="title">Recipe Title:</label>
-                <input type="text" id="title" name="title" value="{{ recipe[1] }}" required>
+                <input type="text" id="title" name="title" value="{{ recipe[1] }}" aria-label="Recipe Title" required>
                 <br>
                 <label for="ingredients">Ingredients:</label>
-                <textarea id="ingredients" name="ingredients" rows= "10" required>{{ recipe[2] }}</textarea>
+                <textarea id="ingredients" name="ingredients" rows="10" aria-label="Ingredients" required>{{ recipe[2] }}</textarea>
                 <br>
                 <label for="instructions">Method:</label>
-                <textarea id="instructions" name="instructions" rows= "10" required>{{ recipe[3] }}</textarea>
+                <textarea id="instructions" name="instructions" rows="10" aria-label="Method" required>{{ recipe[3] }}</textarea>
                 <br>
                 <label for="notes">Notes:</label>
-                <textarea id="notes" name="notes"rows= "5" >{{ recipe[4] }}</textarea>
+                <textarea id="notes" name="notes" rows="5" aria-label="Notes">{{ recipe[4] }}</textarea>
                 <br>
                 <input type="hidden" name="recipe_id" value="{{ recipe[0] }}">
                 <input type="hidden" name="user_id" value="{{ user_id }}">
                 <br>
                 <label for="image">New Image:</label>
-                <input type="file" name="image" id="image" accept="image/*">
+                <input type="file" name="image" id="image" accept="image/*" aria-label="Upload New Image">
                 <br>
                 <div id="image_container">
                 <!-- Display the uploaded or default image -->
@@ -89,7 +89,7 @@
                  </div>
                 </div>  
                 <br>
-                <input type="submit" class= "button1-style"  value="Update Recipe">
+                <input type="submit" class="button1-style" value="Update Recipe">
         
             </form>
         </div>

@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
-    <meta name="description" content="Store all your own delicious recipes in your own recipe book. From appetizers to desserts, find inspiration for your next meal.">
+    <meta name="description"
+        content="Store all your own delicious recipes in your own recipe book. From appetizers to desserts, find inspiration for your next meal.">
     <meta name="keywords" content="recipes, cooking, food, meals, ingredients, dishes">
     <meta name="robots" content="index, follow">
     <meta name="revisit-after" content="7 days">
     <meta name="language" content="English">
     <title>Login</title>
-   
 </head>
-<body class=" background-login">
-    
-        <div class="login-container ">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-         
-    <h1>Please Login</h1>
-    <form method="post" class="login-form">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" autocomplete="username" style="width:50%; height:40px;"  required>
-        <p>
-        <label for="password">Password:</label>
-        <input type="password"  name="password" id="password" autocomplete="current-password" style="width:50%; height:40px;"  required>
-        </p>
-        <input type="submit" class= "button1-style" value="Login">
-    </form>
+
+<body class="background-login">
+    <div class="login-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}" role="alert">
+            {{ message }}
         </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <h1>Please Login</h1>
+        <form method="post" class="login-form" aria-label="Login Form">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" autocomplete="username"
+                style="width:50%; height:40px;" required aria-required="true" aria-label="Username">
+            <p>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" autocomplete="current-password"
+                    style="width:50%; height:40px;" required aria-required="true" aria-label="Password">
+            </p>
+            <input type="submit" class="button1-style" value="Login" aria-label="Submit">
+        </form>
     </div>
-    
 </body>
+
 </html>

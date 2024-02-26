@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
-    <meta name="description"
-        content="Store all your own delicious recipes in your own recipe book. From appetizers to desserts, find inspiration for your next meal.">
+    <meta name="description" content="Store all your own delicious recipes in your own recipe book. From appetizers to desserts, find inspiration for your next meal.">
     <meta name="keywords" content="recipes, cooking, food, meals, ingredients, dishes">
     <meta name="robots" content="index, follow">
     <meta name="revisit-after" content="7 days">
@@ -15,7 +14,7 @@
 </head>
 
 <body>
-    <div class="login-container">
+    <div class="login-container" role="main">
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}
@@ -27,18 +26,16 @@
         {% endwith %}
 
         <h1>Sign Up</h1>
-        <form method="post" class: "login-form">
+        <form method="post" class="login-form" aria-label="Sign Up Form">
             <p>
                 <label for="username">Username:</label>
-                <input type="text" name="username" id="username" autocomplete="username"
-                    style="width:50%; height:40px;" required>
+                <input type="text" name="username" id="username" autocomplete="username" style="width:50%; height:40px;" required>
             </p>
             <p>
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password" autocomplete="new-password"
-                    style="width:50%; height:40px;" required>
+                <input type="password" name="password" id="password" autocomplete="new-password" style="width:50%; height:40px;" required>
             </p>
-            <input type="submit" class="button1-style" value="Sign Up">
+            <input type="submit" class="button1-style" value="Sign Up" aria-label="Submit Sign Up">
         </form>
         <br>
     </div>

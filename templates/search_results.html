@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +12,9 @@
     <meta name="language" content="English">
     <title>Search Results</title>
 </head>
+
 <body>
-        <!-- Hamburger menu toggler -->
+    <!-- Hamburger menu toggler -->
     <input type="checkbox" class="toggler" id="hamburger">
 
     <!-- Hamburger menu button -->
@@ -21,7 +23,7 @@
     </div>
 
     <!-- Menu -->
-    <div class="menu">
+    <div class="menu" role="navigation">
         <div>
             <ul>
                 <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
@@ -30,88 +32,81 @@
                 <li><a href="{{ url_for('instructions') }}">Instructions</a></li>
                 <li><a href="{{ url_for('dashboard') }}">Home</a></li>
                 <li><a href="{{ url_for('search') }}">Search</a></li>
-                
             </ul>
-            
         </div>
     </div>
 
     <!-- Navigation -->
     <nav>
-        <a href="{{ url_for('add_recipe') }}">Add Recipe</a>
-        <a href="{{ url_for('your_recipes') }}">Your Recipes</a>
-        <a href="{{ url_for('favorites') }}">Favorites</a>
-        <a href="{{ url_for('instructions') }}">Instructions</a>
-        <a href="{{ url_for('dashboard') }}">Home</a>
+        <a href="{{ url_for('add_recipe') }}" {% if 'add_recipe' in request.endpoint %}class="selected"{% endif %}>Add Recipe</a>
+        <a href="{{ url_for('your_recipes') }}" {% if 'your_recipes' in request.endpoint %}class="selected"{% endif %}>Your Recipes</a>
+        <a href="{{ url_for('favorites') }}" {% if 'favorites' in request.endpoint %}class="selected"{% endif %}>Favorites</a>
+        <a href="{{ url_for('instructions') }}" {% if 'instructions' in request.endpoint %}class="selected"{% endif %}>Instructions</a>
+        <a href="{{ url_for('dashboard') }}" {% if 'dashboard' in request.endpoint %}class="selected"{% endif %}>Home</a>
         <div class="search-container">
-            <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
+            <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group" aria-label="Search Form">
                 <label for="search"></label>
-                <input type="text" name="search" id="search" required>
-                <input type="submit" class="button1-style" value="Search">
+                <input type="text" name="search" id="search" required aria-required="true">
+                <input type="submit" class="button1-style" value="Search" aria-label="Submit Search">
             </form>
         </div>
     </nav>
+
     <div class="book-container">
         <div class="field-container">
             <img src="/static/images/border.png" alt="Border Image">
-        <div class="search-results">
-        </div>
-        <img src="/static/images/borderb.png" alt="Border Image">
-        <h1>Search Results</h1>
-        <div class="recipes-grid">
-            <!-- Display search results -->
-            {% for result in search_results %}
-            <div class="recipe-item">
-                <div id="printableArea{{ result[0] }}" class="recipe-container">
-                    <div class="recipe-image">
-                        {% if result[6] %}
-                        <img src="{{ url_for('static', filename='uploads/' + result[6]) }}" alt="{{ result[1] }}">
-                        {% else %}
-                        <img src="{{ url_for('static', filename='default_image.jpg') }}" alt="Default Image">
-                        {% endif %}
-                        <p class="recipe-title"><strong>{{ result[1] }}</strong></p>
-                        <!-- Display Method with Numbers -->
-                        <div class="recipe-method">
-                            <strong class="other-titles" >Method:</strong>
-                            {% if result[3] %}
+            <div class="search-results">
+                <!-- This space intentionally left blank for styling purposes -->
+            </div>
+            <img src="/static/images/borderb.png" alt="Border Image">
+            <h1>Search Results</h1>
+            <div class="recipes-grid" role="list">
+                <!-- Display search results -->
+                {% for result in search_results %}
+                <div class="recipe-item" role="listitem">
+                    <div id="printableArea{{ result[0] }}" class="recipe-container">
+                        <div class="recipe-image">
+                            {% if result[6] %}
+                            <img src="{{ url_for('static', filename='uploads/' + result[6]) }}" alt="{{ result[1] }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='default_image.jpg') }}" alt="Default Image">
+                            {% endif %}
+                            <p class="recipe-title"><strong>{{ result[1] }}</strong></p>
+                            <div class="recipe-method">
+                                <strong class="other-titles" aria-label="Method">Method:</strong>
+                                {% if result[3] %}
                                     <ol class="method-list">
                                         {% for step in result[3].split('\n') %}
                                         <li>{{ step }}</li>
                                         {% endfor %}
                                     </ol>
-                                    {% endif %}
-                                </div>
+                                {% endif %}
                             </div>
-
-                            <div class="recipe-details">
-                                <!-- Display Ingredients as a List -->
-                                <p><strong class="other-titles">Ingredients:</strong></p>
-                                {% if result[2] %}
-                                <ul>
-                                    {% for ingredient in result[2].split('\n') %}
-                                    <li>{{ ingredient }}</li>
-                                    {% endfor %}
-                                </ul>
-                        {% endif %}
-
-                        <div class="notes">
-                            <p><strong class="other-titles">Notes:</strong><div class="text-notes"> {{ result[4] }}</div></p>
                         </div>
-                        <br>
 
-                         <!-- Add to Favorites Button -->
-                         <button onclick="addToFavorites({{ result[0] }})" class="button1-style">Add to Favorites</button>
-                         <a class="button3-style" onclick="printPageArea({{ result[0] }})">Print Recipe</a>
+                        <div class="recipe-details">
+                            <p><strong class="other-titles" aria-label="Ingredients">Ingredients:</strong></p>
+                            {% if result[2] %}
+                            <ul>
+                                {% for ingredient in result[2].split('\n') %}
+                                <li>{{ ingredient }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+
+                            <div class="notes" aria-label="Notes">
+                                <p><strong class="other-titles">Notes:</strong><div class="text-notes"> {{ result[4] }}</div></p>
+                            </div>
+                        </div>
+
+                        <button onclick="addToFavorites({{ result[0] }})" class="button1-style" aria-label="Add to Favorites">Add to Favorites</button>
+                        <a class="button3-style" onclick="printPageArea({{ result[0] }})" aria-label="Print Recipe">Print Recipe</a>
                     </div>
-                   
-
                 </div>
                 <hr>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
-
-    </div>
     </div>
 
     <script src="/static/scripts/script.js"></script>
