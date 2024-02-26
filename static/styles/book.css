@@ -13,9 +13,14 @@ body {
 }
 
 h4 {
-	font-size: 3rem;
+	font-size: 2rem;
 	line-height: 1px;
 	font-family: 'Amatic SC', Arial, sans-serif,  cursive !important;
+}
+
+p {
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 .color1{color:#935445}
@@ -23,6 +28,7 @@ h4 {
 
 
 .card {
+	height: 70%;
 	color: #013243; /*SHERPA BLUE*/
 	position: absolute;
 	top: 50%;
@@ -114,7 +120,7 @@ h4 {
 .card .details p {
 	text-align: center;
 	
-	font-size: 2rem;
+	font-size: 1rem;
 	
 	transform: rotate(-10deg);
 	padding: 6px 0 0 20px;
@@ -126,4 +132,71 @@ h4 {
 
 .text-right {
 	text-align: right;
+}
+
+
+.book-text {
+	display: flex;
+	flex-direction: column;
+}
+/* Styles for device breakpoints */
+@media screen and (max-width: 650px) {
+	.card {
+		
+		color: #013243; /*SHERPA BLUE*/
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		
+		
+		 /* Add the background image property */
+		background: #f3e3c2;
+		background-size: cover; /* This ensures that the background image covers the entire container */
+		transform-style: preserve-3d;
+		transform: translate(-50%,-50%) perspective(2000px);
+		box-shadow: inset 300px 0 50px rgba(0,0,0,.5), 20px 0 60px rgba(0,0,0,.5);
+		transition: 1s;
+	}
+
+	h4 {
+		margin-left: 33px;
+		font-size: 1rem;
+		line-height: 1px;
+	}
+
+	.card-details {
+	left: 2%;
+	}
+
+	.card .details p {
+		margin-left: 0px;
+		margin-bottom: 8px;
+		margin-top: 6px;
+		font-size: .8rem;
+	}
+
+	.color2 {
+		margin-bottom: 30px;
+	}
+
+
+		
+	
+}
+
+@media screen and (max-height: 730px ) and (max-width: 450px) {
+	.card .details p {
+		margin-left: 0px;
+		margin-bottom: 1px;
+		margin-top: 1px;
+		font-size: .7rem;
+	}
+
+	
+	h4 {
+		margin-left: 1px;
+		font-size: 1rem;
+		line-height: 1px;
+	}
+
 }
