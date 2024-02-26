@@ -158,12 +158,16 @@ input[type="file"]::file-selector-button:hover {
     grid-template-areas: "image name" "ingredients method";
     grid-template-columns: 1fr 1fr;
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: -20px;
 }
 /* styling for recipe layout*/
 #your-recipes-list {
     list-style: none;
     padding: 20px;
+}
+
+.recipes-grid {
+    width: 100%;
 }
 
 .recipe-item {
@@ -582,9 +586,28 @@ margin-left: 25%;
         padding-top: 0%;
     }
 
+    .search-results {
+        padding-top: 0%;
+    }
+
     .login-form {
         margin-left: 3%;
         }
+
+        nav {
+            display: none;
+        }
+        .book-container {
+            max-height: 100%;
+        }
+
+        .button3-style {
+            padding: 10px 7px;
+            font-size: 13px;
+            margin-top: 0px;
+            margin-left: 1px;
+        }
+        
 
 }
 
@@ -609,7 +632,8 @@ margin-left: 25%;
     }
 
     .book-container {
-        height: 100%;
+        max-height: 100%;
+
     }
    
 
@@ -642,7 +666,7 @@ margin-left: 25%;
         font-size: 16px;
         color: #eed9c4;
         margin-top: 0;
-        margin-left: 15px;
+        margin-left: 9px;
     }
 
     nav {
@@ -652,7 +676,7 @@ margin-left: 25%;
 
     input[type="submit"] {
         margin-top: 22px;
-        padding: 1px 20px;
+        padding: 1px 0px;
     }
 
     input[type="text"] {
@@ -663,7 +687,7 @@ margin-left: 25%;
         width: auto;
         padding: 10px 20px;
         font-size: 16px;
-        margin: 10px;
+        margin: 0px;
     }
 
     .button-group {
@@ -680,11 +704,12 @@ margin-left: 25%;
         font-size: 24px;
         margin: 0 10px 10px 0;
     }
+    
 }
 
 @media only screen and (max-width: 1400px) {
     .recipe-details {
-        padding-left: 40px;
+        padding-left: 5px;
     }
 
     nav {
@@ -748,16 +773,13 @@ margin-left: 25%;
     h1 {
         font-size: 1.5rem;
     }
+
+    .recipe-title {
+        font-size: 21px;
+    }
 }
 
-@media screen and (max-width: 650px) {
-    nav {
-        display: none;
-    }
-    .book-container {
-        max-height: 100%;
-    }
-}
+
 
 @media screen and (max-width: 450px) {
     .login-container {
@@ -777,5 +799,21 @@ margin-left: 25%;
     h1 {
         font-size: 2rem;
     }
+
+  
     
+}
+
+@media screen and (max-width: 550px) {
+   .button1-style {
+       font-size: 12px;
+       padding: 10px 2px;
+   }
+
+   .button3-style {
+       font-size: 12px;
+       padding: 10px 2px;
+       margin-left: 2px;
+       margin-left: -5px;
+   }
 }
