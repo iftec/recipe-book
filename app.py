@@ -69,13 +69,14 @@ def index():
 def search():
     return render_template('search.html')
 
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
-          # Check if the username already exists
+        # Check if the username already exists
         with sqlite3.connect(DATABASE) as connection:
             cursor = connection.cursor()
             cursor.execute('SELECT * FROM users WHERE username=?', (username,))
@@ -119,7 +120,6 @@ def login():
                 flash('Invalid username or password.')
 
     return render_template('login.html')
-
 
 
 @app.route('/search_recipes', methods=['GET'])
@@ -357,9 +357,9 @@ def edit_recipe(recipe_id):
                            (title, ingredients, instructions, notes, recipe_id, user_id))
             connection.commit()
 
-        # Debugging print statements
-        print(f"Image filename: {image_filename}")
-        print(f"Recipe image: {recipe[5]}")
-
     # Return the template without flashing the message for the 'GET' request
     return render_template('edit_recipe.html', recipe=recipe, user_id=user_id)
+
+
+if __name__ == '__main__':
+    app.run(debug=False)
