@@ -28,6 +28,8 @@ A personal recipe book where the user can add there own recipes, edit recipes, a
 1. [**Credits**](#credits)
 
 ## **(UX) User Experience**
+
+
 ### **Target Audiences:**
 * The target audience is for lovers of cooking and eating, who are looking for a simple way to keep track of their favourite recipes.
 ### **Creator Stories:**
@@ -228,13 +230,15 @@ As a user, I want to...
     *The user can print out any recipe in the database.
 
 ### ***Bugs and Fixes:***
+* Still needs loads more styling.
+    Chat GTP was correct and helped about 50% of the time, unfotunatly the other 50% it would make things worse
 * Print function only printing the first recipe.
     * Used the console to check the code and found that the id for the recipe was not changing due to the dynamic page creation. Added more code to deal with this issue.
 * Database issues relating to missing tables.
     * Added code to create any missing tables in the database.
 * Some scaling issues on the your recipe page.
     * changed some scaling to %
-* Issues with null fiedls.
+* Issues with null fields.
     * Added code to allow for null fields in the database.
 * Some hover effects stopped working.
     * Added a hover effect to the divs to cure this.
@@ -243,19 +247,25 @@ As a user, I want to...
 
 #### ***HTML*** - https://validator.w3.org/nu/
 
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/indexhtml-checked.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/indexhtml-checked.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/htmlcheck1.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//htmlcheck1.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/gamehtml-checked.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/gamehtml-checked.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/htmlcheck2.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/htmlcheck2.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
+
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/htmlcheck4.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/htmlcheck4.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
+
+    Errors on some pages as shown due to none html code used by Python and Javascript.
+    Best practice scores lowered due to test on sever that does not have a SSl certificate.
+
 
 #### ***CSS*** - https://jigsaw.w3.org/css-validator/
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/csschecked.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/csschecked.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/book-css.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/book-css.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
 
 ### **Lighthouse Scores**
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/lighthouseindex.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/lighthouseindex.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/lighthousegame.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//lighthousegame.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/lightbook.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/lightbook.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/lighthouse1.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//lighthouse1.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
 
 ## **Jest Testing**
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation//Jesttesting.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/Jesttesting.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation//jest_test.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/jest_test.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
 
 ## **Deployment**
 Deployment
@@ -300,14 +310,15 @@ Making a Local Clone.
     * Used to check the format of the code for the site.
     * used to create hamburger menu.
 * https://www.bing.com/
-    * Used image creator to create all the images for the site.
+    * Used image creator to create images for the site.
 * https://github.com/motdotla/dotenv
     * used for secret keys.
 *https://www.npmjs.com/package/bcrypt
     * Used for password hashing
 *https://codepen.io/rikanutyy/full/PEJBxX
 * Used as the base for the book animation.
-
+*https://spoonacular.com/
+    *Used for recipe images
 
 Many thanks to the teachers at the City of Bristol College for their help and support.
 # recipe-book
