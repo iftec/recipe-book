@@ -84,12 +84,18 @@ async function removeFromFavorites(recipeId) {
     }
 }
 
+
 function showNotification(message, isSuccess) {
-    const notificationElement = document.createElement('div');
-    notificationElement.textContent = isSuccess ? 'Success: ' + message : 'Sorry: ' + message;
-    document.body.appendChild(notificationElement);
-    // Consider using a timeout to remove the notification after a certain period
+    alertMsg = isSuccess ? 'Success: ' + message : 'Sorry: ' + message;
+    alert(alertMsg);
 }
+
+// function showNotification(message, isSuccess) {
+//     const notificationElement = document.createElement('div');
+//     notificationElement.textContent = isSuccess ? 'Success: ' + message : 'Sorry: ' + message;
+//     document.body.appendChild(notificationElement);
+//     // Consider using a timeout to remove the notification after a certain period
+// }
 
 function confirmDelete(recipeId) {
     if (confirm("Are you sure you want to delete this recipe?")) {
@@ -106,13 +112,3 @@ document.addEventListener('DOMContentLoaded', function () {
     toggler.addEventListener('change', toggleMenu);
 });
 
-// Exporting functions
-module.exports = {
-    makeFetchRequest,
-    toggleMenu,
-    addToFavorites,
-    printPageArea,
-    removeFromFavorites,
-    showNotification,
-    confirmDelete
-};
