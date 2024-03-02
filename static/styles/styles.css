@@ -32,7 +32,7 @@ hr {
 
 /* buttons */
 .button-group {
-    background: url('/static/images/bookmark.png') no-repeat;
+    background: url('/static/images/bookmark.png') no-repeat; 
     overflow: hidden;
     font-size: 36px;
     margin: 5px 10px 5px 16px;
@@ -58,7 +58,7 @@ input[type="file"]::file-selector-button {
 }
 
 .button1-style:hover {
-    background-color: #7b1630;
+    text-decoration: underline;
     color: #fff;
 }
 
@@ -86,7 +86,7 @@ a.button2-style {
 }
 
 .button3-style:hover {
-    background-color: #7b1630;
+    text-decoration: underline;
     color: #fff;
 }
 
@@ -103,7 +103,7 @@ input[type="file"]::file-selector-button {
 
 /* file upload button hover state */
 input[type="file"]::file-selector-button:hover {
-    background-color: #7b1630;
+    text-decoration: underline;
     color: #fff;
 }
 
@@ -144,7 +144,7 @@ input[type="file"]::file-selector-button:hover {
 .book-container {
     width: 80%;
     min-height: 200px;
-    max-height: 85%;
+    max-height: 80%;
     padding-top: 25px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -332,7 +332,8 @@ nav a {
 
 nav a:hover,
 nav a.selected {
-    background-color: #7b1630;
+    /* background-color: #7b1630; */
+    text-decoration: underline;
     color: #fff;
 }
 
@@ -483,7 +484,7 @@ margin-left: 25%;
 }
 
 .toggler:checked + .hamburger > div {
-    background: #5f0d19;
+    background-color: #f3e3c2;
 }
 
 
@@ -662,7 +663,7 @@ margin-left: 25%;
     .button3-style {
         font-family: 'Indie Flower', Arial, sans-serif, cursive !important;
         width: auto;
-        padding: 10px 7px;
+        padding: 10px 7px !important;
         font-size: 16px;
         color: #eed9c4;
         margin-top: 0;
@@ -685,7 +686,7 @@ margin-left: 25%;
 
     .button1-style {
         width: auto;
-        padding: 10px 20px;
+        padding: 10px 20px !important;
         font-size: 16px;
         margin: 0px;
     }
@@ -785,6 +786,13 @@ margin-left: 25%;
     .login-container {
         width: 100%;
     }
+
+    .button3-style {
+        padding: 10px 7px;
+        font-size: 16px;
+        margin-top: 0px;
+        margin-left: 5px;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -813,7 +821,14 @@ margin-left: 25%;
    .button3-style {
        font-size: 12px;
        padding: 10px 2px;
-       margin-left: 2px;
        margin-left: -5px;
    }
 }
+
+@media screen and (max-width: 450px) {
+    .button3-style {
+        margin-left: 5px;
+    }
+}
+     
+
