@@ -661,7 +661,7 @@ margin-left: 25%;
     .button3-style {
         font-family: 'Indie Flower', Arial, sans-serif, cursive !important;
         width: auto;
-        padding: 10px 7px !important;
+        padding: 10px 7px;
         font-size: 16px;
         color: #eed9c4;
         margin-top: 0;
@@ -789,7 +789,7 @@ margin-left: 25%;
         padding: 10px 7px;
         font-size: 16px;
         margin-top: 0px;
-        margin-left: 5px;
+        margin-left: 20px;
     }
 }
 
@@ -819,13 +819,13 @@ margin-left: 25%;
    .button3-style {
        font-size: 12px;
        padding: 10px 2px;
-       margin-left: -5px;
+       margin-left: 11px;
    }
 }
 
 @media screen and (max-width: 450px) {
     .button3-style {
-        margin-left: 5px;
+        margin-left: 16px;
     }
 }
      
