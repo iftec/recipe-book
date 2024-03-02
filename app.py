@@ -122,7 +122,7 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/search_recipes', methods=['GET'])
+@app.route('/search_recipes', methods=['GET'], endpoint='search_recipes')
 def search_recipes():
     # Get the search query from the URL parameters
     search_query = request.args.get('search', '')
@@ -137,7 +137,7 @@ def search_recipes():
     return render_template('search_results.html', search_results=search_results)
 
 
-@app.route('/favorites', methods=['GET'])
+@app.route('/favorites', methods=['GET'], endpoint='favorites')
 def favorites():
     # Check if the user is logged in
     if 'user_id' not in session:
@@ -173,7 +173,7 @@ def remove_from_favorites(recipe_id):
     return jsonify({'success': True, 'message': 'Recipe removed from favorites'})
 
 
-@app.route('/dashboard', methods=['GET', 'POST'])
+@app.route('/dashboard', methods=['GET', 'POST'], endpoint='dashboard')
 def dashboard():
     # Check if the user is logged in
     if 'user_id' not in session:
@@ -184,7 +184,7 @@ def dashboard():
     return render_template('dashboard.html')
 
 
-@app.route('/add_recipe', methods=['GET', 'POST'])
+@app.route('/add_recipe', methods=['GET', 'POST'], endpoint='add_recipe')
 def add_recipe():
     # Check if the user is logged in
     if 'user_id' not in session:
@@ -229,7 +229,7 @@ def add_recipe():
 
 
 # route for viewing the user's recipes
-@app.route('/your_recipes', methods=['GET'])
+@app.route('/your_recipes', methods=['GET'], endpoint='your_recipes')
 def your_recipes():
     # Check if the user is logged in
     if 'user_id' not in session:
@@ -267,7 +267,7 @@ def delete_recipe(recipe_id):
     return redirect(url_for('dashboard'))
 
 
-@app.route('/instructions')
+@app.route('/instructions', endpoint='instructions')
 def instructions():
     return render_template('instructions.html')
 
@@ -362,4 +362,4 @@ def edit_recipe(recipe_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
