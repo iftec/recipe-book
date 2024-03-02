@@ -3,8 +3,8 @@
 <p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/recipe-responsive-views1.jpg?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//recipe-responsive-views1.jpg?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
 ## **Site Overview**
-A personal recipe book where the user can add there own recipes, edit recipes, add to a favorites list, search through saved recipes and print out recipes, 
-* [**View the live site here**]()
+As a lover of food I'm always playing with recipes, making modifications, writing them down on bits of paper and losing them, so for this project I thought I would creat a personal recipe book where the user can add there own recipes, edit recipes, add to a favorites list, search through saved recipes and print out recipes, 
+* <a href="http://213.219.38.180/" rel="nofollow"><strong>View the live site here</strong></a>
 
 # Table of contents 
 1. [**Site Overview**](#site-overview)
@@ -209,6 +209,7 @@ Used to fix grammar errors across the project.
 * Mozilla Firefox
 * Opera
 * Windows Laptop
+* Windows Desktop
 * iPhone 11 pro
 * Galaxy S20 FE
 * Galaxy Flip 3
@@ -318,7 +319,7 @@ Making a Local Clone.
 *https://codepen.io/rikanutyy/full/PEJBxX
 * Used as the base for the book animation.
 *https://spoonacular.com/
-    *Used for recipe images
+    *Used for recipe images and included recipes.
 
 Many thanks to the teachers at the City of Bristol College for their help and support.
 # recipe-book
