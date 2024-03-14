@@ -112,3 +112,8 @@ document.addEventListener('DOMContentLoaded', function () {
     toggler.addEventListener('change', toggleMenu);
 });
 
+module.exports = {
+    makeFetchRequest,
+    addToFavorites,
+    // other functions
+  };
