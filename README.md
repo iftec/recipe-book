@@ -223,7 +223,7 @@ As a user, I want to...
     * The Instructions tab explain how to use the functionality of the recipe book.
 * Have a favorites recipes section.
     * The user can add any recipes they have added or search through existing recipes to add to there favorites list.
-* Edit my existing recipess.
+* Edit my existing recipes.
     * The users will be able to edit and update any recipes they have added.
 * Search for recipes.
     The user can search by name or ingredience for recipes in the database.
@@ -314,6 +314,7 @@ Making a Local Clone.
     * Used for creating search section of the site.
     * Used to check the format of the code for the site.
     * used to create hamburger menu.
+    * Used to create some of the python functions.
 * https://www.bing.com/
     * Used image creator to create images for the site.
 * https://github.com/motdotla/dotenv
