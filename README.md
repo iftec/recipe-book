@@ -319,12 +319,12 @@ Making a Local Clone.
     * Used image creator to create images for the site.
 * https://github.com/motdotla/dotenv
     * used for secret keys.
-*https://www.npmjs.com/package/bcrypt
+* https://www.npmjs.com/package/bcrypt
     * Used for password hashing
-*https://codepen.io/rikanutyy/full/PEJBxX
-* Used as the base for the book animation.
-*https://spoonacular.com/
-    *Used for recipe images and included recipes.
+* https://codepen.io/rikanutyy/full/PEJBxX
+    * Used as the base for the book animation.
+* https://spoonacular.com/
+    * Used for recipe images and included recipes.
 
 Many thanks to the teachers at the City of Bristol College for their help and support.
 # recipe-book
