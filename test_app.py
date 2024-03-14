@@ -1,4 +1,5 @@
-import pytest, sqlite3
+import pytest
+import sqlite3
 from app import app
 
 
@@ -7,10 +8,13 @@ def client():
     # Create a test client using Flask's test_client() method
     with app.test_client() as client:
         yield client
+        
 
 def test_signup(client):
     # Test the signup route
     response = client.post('/signup', data={'username': 'testuser', 'password': '<PASSWORD>'}, follow_redirects=True)
+    assert response.status_code == 200
+
 
 def test_login(client):
     # Test the login route
@@ -18,9 +22,7 @@ def test_login(client):
     assert response.status_code == 200
     assert b'You need to log in first.' not in response.data
 
-def test_signup_existing_username(client):
-    # Test signup with an existing username
-    response = client.post('/signup', data={'username': 'testuser', 'password': '<PASSWORD>'}, follow_redirects=True)
+
 
 def test_login_invalid_credentials(client):
     # Test login with invalid credentials
@@ -28,10 +30,17 @@ def test_login_invalid_credentials(client):
     assert response.status_code == 200
     assert b'Invalid username or password.' in response.data
 
+
 def test_add_recipe(client):
     # Test adding a recipe
     # First, perform a login
     client.post('/login', data={'username': 'testuser', 'password': '<PASSWORD>'}, follow_redirects=True)
+    # Then, add a recipe
+    response = client.post('/add_recipe', data={'name': 'testrecipe', 'description': 'test description', 'time': '10', 'difficulty': '1', 'ingredients': 'test ingredients', 'directions': 'test directions'}, follow_redirects=True)
+    assert response.status_code == 200
+    
+   
+
 
 
 def test_delete_recipe(client):
