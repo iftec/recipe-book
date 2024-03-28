@@ -39,11 +39,19 @@ function toggleMenu() {
 async function addToFavorites(recipeId) {
     const url = `/add_to_favorites/${recipeId}`;
     const method = 'POST';
-    const data = {}; // Consider passing necessary data if required
+    const data = {};
     const successMessage = 'Recipe added to favorites!';
-    const errorMessage = 'This recipe is already in your favorites!!';
+    const errorMessage = 'This recipe is already your favorites!!';
 
     const responseData = await makeFetchRequest(url, method, data, successMessage, errorMessage);
+
+    if (responseData.success) {
+        // Redirect to a new page or perform other actions after successful addition to favorites
+        window.location.href = '/favorites';  // Redirect to the favorites page
+    } else {
+        // Display an error message if adding to favorites failed
+        alert(responseData.message);
+    }
 }
 
 function printPageArea(recipeID) {
@@ -113,13 +121,26 @@ async function addRecipe(formData) {
     }
 }
 
-function confirmDelete(recipeId) {
+async function confirmDelete(recipeId) {
     if (confirm("Are you sure you want to delete this recipe?")) {
-        // If user confirms, submit the form
-        document.getElementById('deleteForm' + recipeId).submit();
-    } else {
-        // If user cancels, do nothing
-        return false;
+
+        try {
+            const response = await fetch('/delete_recipe/' + recipeId, {
+            method: 'POST'
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                alert(data.message); // Display success message
+                window.location.href = data.redirect_url; // Redirect to the specified URL
+            } else {
+                alert(data.message); // Display error message
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while deleting the recipe.');
+        }
     }
 }
 

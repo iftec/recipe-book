@@ -3,7 +3,7 @@ import sqlite3
 import os
 from os import path
 from dotenv import load_dotenv
-from .views import views
+from .views import views, find_match
 
 # Load enviroment variables from .env
 load_dotenv()
@@ -21,6 +21,7 @@ def create_app():
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
     app.register_blueprint(views, URL_PREFIX='/')
+    app.jinja_env.filters['find_match'] = find_match
     create_tables()
     return app
 

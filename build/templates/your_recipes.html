@@ -65,8 +65,8 @@
                     </div>
                     <div class="button-group">
                         <!-- Add to Favorites Button -->
-                        {% if recipe[0] not in favorite_recipe_ids %}
-                        <button onclick="addToFavorites({{ recipe[0] }})" class="button3-style" aria-label="Add to Favorites">Add to Favorites</button>
+                        {% if not recipe[0] | find_match(favorites) %}
+                            <button onclick="addToFavorites({{ recipe[0] }})" class="button3-style" aria-label="Add to Favorites">Add to Favorites</button>
                         {% endif %}
                         <!-- Edit Button -->
                         <form method="get" action="{{ url_for('views.edit_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
