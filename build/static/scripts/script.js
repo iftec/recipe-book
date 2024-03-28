@@ -90,12 +90,28 @@ function showNotification(message, isSuccess) {
     alert(alertMsg);
 }
 
-// function showNotification(message, isSuccess) {
-//     const notificationElement = document.createElement('div');
-//     notificationElement.textContent = isSuccess ? 'Success: ' + message : 'Sorry: ' + message;
-//     document.body.appendChild(notificationElement);
-//     // Consider using a timeout to remove the notification after a certain period
-// }
+async function addRecipe(formData) {
+    try {
+        const response = await fetch('/add_recipe', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // Recipe added successfully, redirect to the specified URL
+            alert(data.message);
+            window.location.href = data.redirect_url;
+        } else {
+            // Display an alert message if there was an error adding the recipe
+            alert(data.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while adding the recipe.');
+    }
+}
 
 function confirmDelete(recipeId) {
     if (confirm("Are you sure you want to delete this recipe?")) {
@@ -106,6 +122,15 @@ function confirmDelete(recipeId) {
         return false;
     }
 }
+
+document.getElementById('addRecipeForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    const formData = new FormData(this); // Create FormData object from the form
+
+    // Call the addRecipe function with the form data
+    addRecipe(formData);
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     const toggler = document.querySelector('.toggler');

@@ -15,6 +15,10 @@ DATABASE = os.getenv('DATABASE')
 UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER')
 ALLOWED_EXTENSIONS = os.getenv('ALLOWED_EXTENSIONS')
 
+def allowed_file(filename):
+    return '.' in filename \
+        and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 views = Blueprint('views', __name__)
 
 
@@ -139,7 +143,6 @@ def dashboard():
         flash('You need to log in first.')
         return redirect(url_for('views.login'))
 
-    user_id = session['user_id']
     return render_template('dashboard.html')
 
 
@@ -161,17 +164,23 @@ def add_recipe():
 
         # Initialize filename to None
         filename = None
+        file = request.files['image']
 
         # Check if the post request has the file part
-        if 'image' in request.files:
-            file = request.files['image']
+        # Flask submits an emty file is no file selected
+        if file.filename != '':
             # Check if the file is one of the allowed types/extensions
             if file and allowed_file(file.filename):
-                # Generate a unique filename, e.g., using UUID
-                filename = secure_filename(str(uuid.uuid4()) + os.path.splitext(file.filename)[1])
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                # Generate a unique filename using UUID
+                filename = secure_filename(
+                    str(uuid.uuid4()) + os.path.splitext(file.filename)[1]
+                    )
+                file.save(os.path.join(UPLOAD_FOLDER, filename))
             else:
-                flash('Invalid file type. Allowed types are png, jpg, jpeg, gif.')
+                # If not valid file type show message
+                flash(
+                    'Invalid file type. Allowed types are png, jpg, jpeg, gif.'
+                    )
 
         # Save the recipe to the database with the filename (even if it's None)
         with sqlite3.connect(DATABASE) as connection:
@@ -181,8 +190,7 @@ def add_recipe():
                 (title, ingredients, instructions, notes, user_id, filename))
             connection.commit()
 
-        flash('Recipe added successfully.')
-        return redirect(url_for('views.dashboard'))
+        return jsonify({'success': True, 'message': 'Recipe added successfully.', 'redirect_url': url_for('views.add_recipe')})
 
     return render_template('add_recipe.html')
 
