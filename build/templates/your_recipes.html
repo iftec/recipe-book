@@ -69,10 +69,10 @@
                         <button onclick="addToFavorites({{ recipe[0] }})" class="button3-style" aria-label="Add to Favorites">Add to Favorites</button>
                         {% endif %}
                         <!-- Edit Button -->
-                        <form method="get" action="{{ url_for('edit_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
+                        <form method="get" action="{{ url_for('views.edit_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
                             <input class="button3-style" type="submit" value="Edit Recipe" aria-label="Edit Recipe">
                         </form>
-                        <form id="deleteForm{{ recipe[0] }}" method="post" action="{{ url_for('delete_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
+                        <form id="deleteForm{{ recipe[0] }}" method="post" action="{{ url_for('views.delete_recipe', recipe_id=recipe[0]) }}" style="display: inline;">
                             <input class="button3-style" type="button" value="Delete Recipe" onclick="confirmDelete({{ recipe[0] }})" aria-label="Delete Recipe">
                         </form>
                         <a class="button3-style" onclick="printPageArea({{ recipe[0] }})" aria-label="Print Recipe">Print Recipe</a>

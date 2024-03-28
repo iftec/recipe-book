@@ -30,7 +30,7 @@
                 <li>You can add any recipe from the search results to your favorites list.</li>
             </ul>
             <div class="search-container" role="search">
-                <form method="get" action="{{ url_for('search_recipes') }}" id="searchForm" class="form-group">
+                <form method="get" action="{{ url_for('views.search_recipes') }}" id="searchForm" class="form-group">
                     <label for="search"></label>
                     <input type="text" name="search" id="search" required>
                     <input type="submit" class="button1-style" value="Search">

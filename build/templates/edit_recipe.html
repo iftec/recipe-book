@@ -22,7 +22,7 @@
             <img src="/static/images/borderb.png" alt="Border Image">
             <h1>Edit Recipe</h1>
             <div class="form-width">
-            <form class="form-group" method="post" action="{{ url_for('edit_recipe', recipe_id=recipe[0]) }}" enctype="multipart/form-data">
+            <form class="form-group" method="post" action="{{ url_for('views.edit_recipe', recipe_id=recipe[0]) }}" enctype="multipart/form-data">
                 <label for="title">Recipe Title:</label>
                 <input type="text" id="title" name="title" value="{{ recipe[1] }}" aria-label="Recipe Title" required>
                 <br>
