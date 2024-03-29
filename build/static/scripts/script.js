@@ -82,6 +82,8 @@ async function removeFromFavorites(recipeId) {
                 if (favoriteElement) {
                     favoriteElement.remove();
                 }
+                showNotification('Recipe successfully removed from favorites', true)
+                window.location.href = '/favorites';
             } else {
                 showNotification('Failed to remove recipe from favorites.', false);
             }
