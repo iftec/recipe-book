@@ -55,16 +55,20 @@ def signup():
             existing_user = cursor.fetchone()
 
             if existing_user:
-                flash('Username already exists. Please choose a different one.')
+                flash('Username already exists. \
+                      Please choose a different one.')
                 return redirect(url_for('views.signup'))
 
         # Hash the password before storing it
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'),
+                                        bcrypt.gensalt())
 
         # Insert the new user into the database
         with sqlite3.connect(DATABASE) as connection:
             cursor = connection.cursor()
-            cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, hashed_password))
+            cursor.execute('INSERT INTO users \
+                           (username, password) VALUES (?, ?)',
+                           (username, hashed_password))
             connection.commit()
 
         flash('Signup successful! Please log in.')
@@ -129,11 +133,13 @@ def favorites():
     # Get user's favorite recipes
     with sqlite3.connect(DATABASE) as connection:
         cursor = connection.cursor()
-        cursor.execute('SELECT r.* FROM recipes r JOIN favorites f ON r.id = f.recipe_id WHERE f.user_id=?',
+        cursor.execute('SELECT r.* FROM recipes r JOIN favorites f \
+                       ON r.id = f.recipe_id WHERE f.user_id=?',
                        (user_id,))
         favorites = cursor.fetchall()
 
-    return render_template('favorites.html', favorites=favorites, user_id=user_id)
+    return render_template('favorites.html',
+                           favorites=favorites, user_id=user_id)
 
 
 @views.route('/remove_from_favorites/<int:recipe_id>', methods=['POST'])
@@ -147,10 +153,12 @@ def remove_from_favorites(recipe_id):
     # Handle removing the recipe from favorites
     with sqlite3.connect(DATABASE) as connection:
         cursor = connection.cursor()
-        cursor.execute('DELETE FROM favorites WHERE user_id=? AND recipe_id=?', (user_id, recipe_id))
+        cursor.execute('DELETE FROM favorites WHERE user_id=? AND recipe_id=?',
+                       (user_id, recipe_id))
         connection.commit()
 
-    return jsonify({'success': True, 'message': 'Recipe removed from favorites'})
+    return jsonify({'success': True,
+                    'message': 'Recipe removed from favorites'})
 
 
 @views.route('/dashboard', methods=['GET', 'POST'], endpoint='dashboard')
@@ -203,11 +211,14 @@ def add_recipe():
         with sqlite3.connect(DATABASE) as connection:
             cursor = connection.cursor()
             cursor.execute(
-                'INSERT INTO recipes (title, ingredients, instructions, notes, user_id, image) VALUES (?, ?, ?, ?, ?, ?)',
+                'INSERT INTO recipes (title, ingredients, instructions, \
+                    notes, user_id, image) VALUES (?, ?, ?, ?, ?, ?)',
                 (title, ingredients, instructions, notes, user_id, filename))
             connection.commit()
 
-        return jsonify({'success': True, 'message': 'Recipe added successfully.', 'redirect_url': url_for('views.add_recipe')})
+        return jsonify({'success': True,
+                        'message': 'Recipe added successfully.',
+                        'redirect_url': url_for('views.add_recipe')})
 
     return render_template('add_recipe.html')
 
@@ -236,6 +247,7 @@ def your_recipes():
     return render_template('your_recipes.html',
                            recipes=recipes, favorites=favorites)
 
+
 @views.route('/delete_recipe/<int:recipe_id>', methods=['POST'])
 def delete_recipe(recipe_id):
     # Check if the user is logged in
@@ -248,10 +260,12 @@ def delete_recipe(recipe_id):
     # Handle recipe deletion
     with sqlite3.connect(DATABASE) as connection:
         cursor = connection.cursor()
-        cursor.execute('DELETE FROM recipes WHERE id=? AND user_id=?', (recipe_id, user_id))
+        cursor.execute('DELETE FROM recipes WHERE id=? AND user_id=?',
+                       (recipe_id, user_id))
         connection.commit()
 
-    return jsonify({'success': True, 'message': 'Recipe deleted successfully.', 'redirect_url': url_for('views.your_recipes')})
+    return jsonify({'success': True, 'message': 'Recipe deleted successfully.',
+                    'redirect_url': url_for('views.your_recipes')})
 
 
 @views.route('/instructions', endpoint='instructions')
@@ -314,11 +328,9 @@ def edit_recipe(recipe_id):
     with sqlite3.connect(DATABASE) as connection:
         connection.row_factory = sqlite3.Row
         cursor = connection.cursor()
-        cursor.execute('SELECT * FROM recipes WHERE id=? AND user_id=?', (recipe_id, user_id))
+        cursor.execute('SELECT * FROM recipes WHERE id=? AND user_id=?',
+                       (recipe_id, user_id))
         recipe = cursor.fetchone()
-
-    # Define the variable outside of the 'if request.method == 'POST':' block
-    image_filename = None
 
     if request.method == 'POST':
         # Handle recipe editing
@@ -334,22 +346,23 @@ def edit_recipe(recipe_id):
             # Save the file if it has a filename
             if file.filename != '':
                 filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                file.save(os.path.join(UPLOAD_FOLDER, filename))
 
                 # Update the 'image' column in the database with the filename
                 with sqlite3.connect(DATABASE) as connection:
                     cursor = connection.cursor()
-                    cursor.execute('UPDATE recipes SET image=? WHERE id=? AND user_id=?',
+                    cursor.execute('UPDATE recipes SET image=? \
+                                   WHERE id=? AND user_id=?',
                                    (filename, recipe_id, user_id))
                     connection.commit()
-                    # Set the variable to be used later
-                    image_filename = filename
 
         # Update other recipe details
         with sqlite3.connect(DATABASE) as connection:
             cursor = connection.cursor()
-            cursor.execute('UPDATE recipes SET title=?, ingredients=?, instructions=?, notes=? WHERE id=? AND user_id=?',
-                           (title, ingredients, instructions, notes, recipe_id, user_id))
+            cursor.execute('UPDATE recipes SET title=?, ingredients=?, \
+                           instructions=?, notes=? WHERE id=? AND user_id=?',
+                           (title, ingredients, instructions,
+                            notes, recipe_id, user_id))
             connection.commit()
 
     # Return the template without flashing the message for the 'GET' request
