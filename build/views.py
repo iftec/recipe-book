@@ -98,15 +98,23 @@ def login():
 def search_recipes():
     # Get the search query from the URL parameters
     search_query = request.args.get('search', '')
+    user_id = session['user_id']
 
     # Query the database for recipes matching the search query
     with sqlite3.connect(DATABASE) as connection:
         cursor = connection.cursor()
-        cursor.execute('SELECT * FROM recipes WHERE title LIKE ? OR ingredients LIKE ?',
-                       ('%' + search_query + '%', '%' + search_query + '%'))
+        cursor.execute(
+            'SELECT * FROM recipes WHERE title LIKE ? OR ingredients LIKE ?',
+            ('%' + search_query + '%', '%' + search_query + '%'))
         search_results = cursor.fetchall()
+        cursor.execute(
+            'SELECT r.* FROM recipes r JOIN favorites f \
+                ON r.id = f.recipe_id WHERE f.user_id=?',
+            (user_id,))
+        favorites = cursor.fetchall()
 
-    return render_template('search_results.html', search_results=search_results)
+    return render_template('search_results.html',
+                           search_results=search_results, favorites=favorites)
 
 
 @views.route('/favorites', methods=['GET'], endpoint='favorites')

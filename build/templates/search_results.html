@@ -63,7 +63,9 @@
                             </div>
                         </div>
                         <div id="buttons">
-                            <button onclick="addToFavorites({{ result[0] }})" class="button1-style" aria-label="Add to Favorites">Add to Favorites</button>
+                            {% if not result[0] | find_match(favorites) %}
+                                <button onclick="addToFavorites({{ result[0] }})" class="button1-style" aria-label="Add to Favorites">Add to Favorites</button>
+                            {% endif %}
                             <a class="button3-style" onclick="printPageArea({{ result[0] }})" aria-label="Print Recipe">Print</a>
                         </div>
                     </div>
