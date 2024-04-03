@@ -694,6 +694,10 @@ margin-left: 25%;
         margin: 5px 43px 5px 16px;
         padding-bottom: 6px;
     }
+
+    .search-container {
+        padding-right: 44px;  
+    }
 }
 
 @media only screen and (max-width: 1024px) and (min-width:830px) {

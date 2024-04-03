@@ -3,39 +3,23 @@
 
 body {
 	font-family: 'Indie Flower', Arial, sans-serif, cursive !important;
-  background: #f3e3c2;
+  	background: #f3e3c2;
 	margin: 0px;
 	padding: 0px;
+	overflow: scroll;
 }
 
 ::selection {
 	background: transparent;
 }
 
-h4 {
-	font-size: 2rem;
-	line-height: 1px;
-	font-family: 'Amatic SC', Arial, sans-serif,  cursive !important;
-}
-
-p {
-	margin-top: 15px;
-	margin-bottom: 15px;
-}
-
-.color1{color:#935445}
-.color2{color:#4e3d36}
-
-
 .card {
-	height: 70%;
+	height: 80%;
 	color: #013243; /*SHERPA BLUE*/
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	
-	
-	 /* Add the background image property */
+	/* Add the background image property */
     background: #f3e3c2;
     background-size: cover; /* This ensures that the background image covers the entire container */
 	transform-style: preserve-3d;
@@ -83,9 +67,9 @@ p {
 
 .card .bark {
 	position: absolute;
-	 /* Add the background image property */
-	 background: #f3e3c2;
-	 background-size: cover; /* This ensures that the background image covers the entire container */
+	/* Add the background image property */
+	background: #f3e3c2;
+	background-size: cover; /* This ensures that the background image covers the entire container */
 	width: 100%;
 	height: 100%;
 	opacity: 0;
@@ -104,50 +88,82 @@ p {
 .card:hover .bark {
 	opacity: 1;
 	transition: .6s;
-  box-shadow: 300px 200px 100px rgba(0, 0, 0, .4) inset;
+  	box-shadow: 300px 200px 100px rgba(0, 0, 0, .4) inset;
 }
 
-.card .details {
+.card .details, .inner-book-container {
 	position: absolute;
 	top: 0;
-	left: 5%;
+	left: 0;
 	box-sizing: border-box;
-	padding: 0 0 0 10px;
+	padding: 0 0 0 0;
 	z-index: -1;
-	margin-top: 10px;
+	margin-top: 0;
 }
 
 .card .details p {
 	text-align: center;
-	
 	font-size: 1rem;
-	
 	transform: rotate(-10deg);
 	padding: 6px 0 0 20px;
-}
-
-.card .details h4 {
-	text-align: center;
 }
 
 .text-right {
 	text-align: right;
 }
 
-
 .book-text {
 	display: flex;
 	flex-direction: column;
+	margin-top: 20%;
+	padding: 5px auto auto auto;
 }
+
+.book-text p {
+	padding: 0;
+	margin-top: 0;
+	margin-bottom: 5%;
+}
+
+.inner-book-container {
+	width: 100%;
+	height: 100%;
+	display: block;
+	text-align: center;
+}
+
+
+.inner-title {
+	display: block;
+	width: 100%;
+	height: fit-content;
+	font-size: clamp(0.9rem, 1.8vw, 2rem); /* Use clamp to limit highest and lowest font sizes while keeping font responsive */
+	line-height: 1px;
+	font-family: 'Amatic SC', Arial, sans-serif,  cursive !important;
+}
+
+.color1{
+	color:#935445;
+	padding-top: 5%;
+	padding-bottom: 5%;
+}
+.color2{
+	color:#4e3d36;
+	margin-bottom: 20%;
+}
+
+.inner-book-text {
+	
+	font-size: clamp(0.8rem, 1.3vw, 1.8rem);
+}
+
 /* Styles for device breakpoints */
 @media screen and (max-width: 650px) {
 	.card {
-		
 		color: #013243; /*SHERPA BLUE*/
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		
 		
 		 /* Add the background image property */
 		background: #f3e3c2;
@@ -157,46 +173,4 @@ p {
 		box-shadow: inset 300px 0 50px rgba(0,0,0,.5), 20px 0 60px rgba(0,0,0,.5);
 		transition: 1s;
 	}
-
-	h4 {
-		margin-left: 33px;
-		font-size: 1rem;
-		line-height: 1px;
-	}
-
-	.card-details {
-	left: 2%;
-	}
-
-	.card .details p {
-		margin-left: 0px;
-		margin-bottom: 8px;
-		margin-top: 6px;
-		font-size: .8rem;
-	}
-
-	.color2 {
-		margin-bottom: 30px;
-	}
-
-
-		
-	
-}
-
-@media screen and (max-height: 730px ) and (max-width: 450px) {
-	.card .details p {
-		margin-left: 0px;
-		margin-bottom: 1px;
-		margin-top: 1px;
-		font-size: .7rem;
-	}
-
-	
-	h4 {
-		margin-left: 1px;
-		font-size: 1rem;
-		line-height: 1px;
-	}
-
 }
