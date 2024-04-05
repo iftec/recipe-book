@@ -1,0 +1,20 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.2, pytest-8.1.1, pluggy-1.4.0 -- C:\Users\iftec\AppData\Local\Programs\Python\Python312\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\iftec\OneDrive - Evolution Network Services Ltd\Documents\Web design work\project3\recipe-book
+collecting ... collected 12 items
+
+tests/test_app.py::test_dashboard_not_logged_in PASSED                   [  8%]
+tests/test_app.py::test_edit_recipe_not_logged_in PASSED                 [ 16%]
+tests/test_app.py::test_signup_new_user PASSED                           [ 25%]
+tests/test_app.py::test_incorrect_login_details PASSED                   [ 33%]
+tests/test_app.py::test_correct_login_details PASSED                     [ 41%]
+tests/test_app.py::test_add_recipe PASSED                                [ 50%]
+tests/test_app.py::test_search_recipe PASSED                             [ 58%]
+tests/test_app.py::test_update_recipe PASSED                             [ 66%]
+tests/test_app.py::test_add_to_favorites PASSED                          [ 75%]
+tests/test_app.py::test_remove_from_favorites PASSED                     [ 83%]
+tests/test_app.py::test_delete_recipe PASSED                             [ 91%]
+tests/test_app.py::test_empty_test_db PASSED                             [100%]
+
+============================= 12 passed in 2.13s ==============================
