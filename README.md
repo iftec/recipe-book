@@ -16,12 +16,15 @@ As a lover of food I'm always playing with recipes, making modifications, writin
     * [***Wireframes***](#wireframes)
     * [***Colour Scheme***](#colour-scheme)
 1. [**Current Features Common to all pages**](#current-features-common-to-all-pages)
-    
+1. [**Models & Schema**](#models--schema)
+    * [***Database***](#database)
+    * [***Process***](#process)    
 1. [**Individual Page Features**](#individual-page-content-features)
    
 1. [**Testing Phase**](#testing-phase)
     * [**During Development Testing**](#during-development-testing)
     * [**Manual Testing**](#manual-testing)
+1. [**Testing User-Stories**](#testing-user-stories)
     * [**Bugs & Fixes**](#bugs-and-fixes)
 1. [**Deployment**](#deployment)
 1. [**Future Enhancements**](#future-enhancements)
@@ -192,7 +195,31 @@ Used to fix grammar errors across the project.
 * List of Instructions
 <p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/instructions-book.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//instructions-book.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
+# **Models & Schema**
+### **Database**
+* For the implementation of the Recipe Book Application, I required the use of a database to store both the user information once they had created their account and any recipes each idividual user created or add to their favorites.
+* As the database itself won't be very resources intensive or data heavy, I have opted to use SQLite for simplicity.
+* Below is a breakdown of the database models used in this application.
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/DB_Schema.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//DB_Schema.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
+* Once the user has register on the site, their sign up information is stored along with a unique ID in the database.
+* Everytime the user creates a recipe, this unique ID is stored with that recipe in a seperate 'recipes' table.
+
+### **Process**
+#### **Creating a recipe**
+* A user has the ability to create any number of recipes, once the required text has been entered into the entry form click the 'Add Recipe' button and the recipe will be added to the database.
+
+#### **Update a recipe**
+* From the user created recipes, the user has the option to update an existing recipe by clicking on the Edit Recipe button next to the recipe they wish to update.
+
+
+#### **Add to favorties**
+* The user has the option to add a recipe to their favorites list by clicking the Add to Favorites button next to each recipe. This will add the recipe ID to the user's favorites in the database.
+
+
+#### **Delete a recipe**
+* The user also has the option of deleting a recipe completly, if they have created it, the user cannot delete recipes found from searching the database if they did not create it.
+To delete a recipe the user clicks the delete button next to the recipe they wish to remove.
 
 ## **Testing Phase**
 ### **During Development Testing**
@@ -201,6 +228,7 @@ Used to fix grammar errors across the project.
 * W3C Markup Validation Service
 * W3C CSS Validation Service
 * Jest 
+* pytest
 
 
 ### **Manual Testing:**
@@ -232,7 +260,7 @@ As a user, I want to...
 
 ### ***Bugs and Fixes:***
 * Still needs loads more styling.
-    Chat GTP was correct and helped about 50% of the time, unfotunatly the other 50% it would make things worse
+    Chat GTP was correct and helped about 50% of the time, the other 50% it would make things worse
 * Print function only printing the first recipe.
     * Used the console to check the code and found that the id for the recipe was not changing due to the dynamic page creation. Added more code to deal with this issue.
 * Database issues relating to missing tables.
@@ -268,8 +296,18 @@ As a user, I want to...
 ## **Jest Testing**
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation//jest_test.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/jest_test.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
 
-## **Python Testing**
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation//python_tests.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/python_tests.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
+## **Testing with PyTest**
+* Several tests were built using PyTest in order to test the full functionality of the web application. And can be ran using the 'pytest' command.
+* These tests include emulations of:
+    1. Signing up as a new user.
+    2. Logging in.
+    3. Adding a recipe.
+    4. Updating a recipe.
+    5. Deleting a recipe.
+    6. Searching for a recipe.
+    7. Add to favorites.
+* Full tests shown below:
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation//test_results.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/test_results.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
 
 
 ## **Deployment**
@@ -306,6 +344,8 @@ Making a Local Clone.
 * Use Api to get search and add recipes from other websites.
 
 ## **Credits**
+* https://www.bootstrap.com
+    * Used for the bootstrap template.
 * https://www.w3schools.com/
     * Used for HTML and CSS documentation reference and examples.
 * https://learn.codeinstitute.net/
@@ -325,6 +365,8 @@ Making a Local Clone.
     * Used as the base for the book animation.
 * https://spoonacular.com/
     * Used for recipe images and included recipes.
+* https://www.grammarly.com/
+    * Used to check the grammar of the text.
 
 Many thanks to the teachers at the City of Bristol College for their help and support.
 # recipe-book
