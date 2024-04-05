@@ -9,10 +9,11 @@ import bcrypt
 import os
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
+from . import db_connect
 
 load_dotenv()
 DATABASE = os.getenv('DATABASE')
-UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER')
+UPLOAD_FOLDER = os.getenv('UPLOAD_PATH')
 ALLOWED_EXTENSIONS = os.getenv('ALLOWED_EXTENSIONS')
 
 
@@ -21,6 +22,8 @@ def allowed_file(filename):
         and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+# Create custom filter for jinja to check for existance of record in database,
+# Used to hide 'add to favorites' button.
 def find_match(target, favorites):
     for favorite in favorites:
         if target == favorite[0]:
@@ -49,7 +52,7 @@ def signup():
         password = request.form['password']
 
         # Check if the username already exists
-        with sqlite3.connect(DATABASE) as connection:
+        with db_connect() as connection:
             cursor = connection.cursor()
             cursor.execute('SELECT * FROM users WHERE username=?', (username,))
             existing_user = cursor.fetchone()
@@ -64,7 +67,7 @@ def signup():
                                         bcrypt.gensalt())
 
         # Insert the new user into the database
-        with sqlite3.connect(DATABASE) as connection:
+        with db_connect() as connection:
             cursor = connection.cursor()
             cursor.execute('INSERT INTO users \
                            (username, password) VALUES (?, ?)',
@@ -84,7 +87,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        with sqlite3.connect(DATABASE) as connection:
+        with db_connect() as connection:
             cursor = connection.cursor()
             cursor.execute('SELECT * FROM users WHERE username=?', (username,))
             user = cursor.fetchone()
@@ -105,7 +108,7 @@ def search_recipes():
     user_id = session['user_id']
 
     # Query the database for recipes matching the search query
-    with sqlite3.connect(DATABASE) as connection:
+    with db_connect() as connection:
         cursor = connection.cursor()
         cursor.execute(
             'SELECT * FROM recipes WHERE title LIKE ? OR ingredients LIKE ?',
@@ -131,7 +134,7 @@ def favorites():
     user_id = session['user_id']
 
     # Get user's favorite recipes
-    with sqlite3.connect(DATABASE) as connection:
+    with db_connect() as connection:
         cursor = connection.cursor()
         cursor.execute('SELECT r.* FROM recipes r JOIN favorites f \
                        ON r.id = f.recipe_id WHERE f.user_id=?',
@@ -151,7 +154,7 @@ def remove_from_favorites(recipe_id):
     user_id = session['user_id']
 
     # Handle removing the recipe from favorites
-    with sqlite3.connect(DATABASE) as connection:
+    with db_connect() as connection:
         cursor = connection.cursor()
         cursor.execute('DELETE FROM favorites WHERE user_id=? AND recipe_id=?',
                        (user_id, recipe_id))
@@ -178,22 +181,23 @@ def add_recipe():
         flash('You need to log in first.')
         return redirect(url_for('views.login'))
 
-    user_id = session['user_id']
+    # user_id = session['user_id']
 
     if request.method == 'POST':
         # Handle recipe addition
-        title = request.form['title']
-        ingredients = request.form['ingredients']
-        instructions = request.form['instructions']
-        notes = request.form['notes']
+        title = request.form.get('title')
+        ingredients = request.form.get('ingredients')
+        instructions = request.form.get('instructions')
+        notes = request.form.get('notes')
+        user_id = session['user_id']
 
         # Initialize filename to None
         filename = None
-        file = request.files['image']
+        file = request.files.get('image')
 
         # Check if the post request has the file part
         # Flask submits an emty file is no file selected
-        if file.filename != '':
+        if file != '':
             # Check if the file is one of the allowed types/extensions
             if file and allowed_file(file.filename):
                 # Generate a unique filename using UUID
@@ -208,7 +212,7 @@ def add_recipe():
                     )
 
         # Save the recipe to the database with the filename (even if it's None)
-        with sqlite3.connect(DATABASE) as connection:
+        with db_connect() as connection:
             cursor = connection.cursor()
             cursor.execute(
                 'INSERT INTO recipes (title, ingredients, instructions, \
@@ -234,7 +238,7 @@ def your_recipes():
     user_id = session['user_id']
 
     # Display user's recipes
-    with sqlite3.connect(DATABASE) as connection:
+    with db_connect() as connection:
         cursor = connection.cursor()
         cursor.execute('SELECT * FROM recipes WHERE user_id=?', (user_id,))
         recipes = cursor.fetchall()
@@ -258,7 +262,7 @@ def delete_recipe(recipe_id):
     user_id = session['user_id']
 
     # Handle recipe deletion
-    with sqlite3.connect(DATABASE) as connection:
+    with db_connect() as connection:
         cursor = connection.cursor()
         cursor.execute('DELETE FROM recipes WHERE id=? AND user_id=?',
                        (recipe_id, user_id))
@@ -273,7 +277,6 @@ def instructions():
     return render_template('instructions.html')
 
 
-# add to favorites
 @views.route('/add_to_favorites/<int:recipe_id>', methods=['POST'])
 def add_to_favorites(recipe_id):
     # Check if the user is logged in
@@ -283,7 +286,7 @@ def add_to_favorites(recipe_id):
     user_id = session['user_id']
 
     # Check if the recipe is already in favorites
-    with sqlite3.connect(DATABASE) as connection:
+    with db_connect() as connection:
         cursor = connection.cursor()
         cursor.execute('SELECT * FROM favorites \
                        WHERE user_id=? AND recipe_id=?',
@@ -296,7 +299,7 @@ def add_to_favorites(recipe_id):
                 )
 
     # Add the recipe to favorites
-    with sqlite3.connect(DATABASE) as connection:
+    with db_connect() as connection:
         cursor = connection.cursor()
         cursor.execute(
             'INSERT INTO favorites (user_id, recipe_id) VALUES (?, ?)',
@@ -304,7 +307,7 @@ def add_to_favorites(recipe_id):
         connection.commit()
 
     # Get the updated list of favorites
-    with sqlite3.connect(DATABASE) as connection:
+    with db_connect() as connection:
         cursor = connection.cursor()
         cursor.execute('SELECT r.* FROM recipes r JOIN favorites f ON \
                        r.id = f.recipe_id WHERE f.user_id=?',
@@ -325,7 +328,7 @@ def edit_recipe(recipe_id):
     user_id = session['user_id']
 
     # Retrieve recipe details for editing
-    with sqlite3.connect(DATABASE) as connection:
+    with db_connect() as connection:
         connection.row_factory = sqlite3.Row
         cursor = connection.cursor()
         cursor.execute('SELECT * FROM recipes WHERE id=? AND user_id=?',
@@ -349,7 +352,7 @@ def edit_recipe(recipe_id):
                 file.save(os.path.join(UPLOAD_FOLDER, filename))
 
                 # Update the 'image' column in the database with the filename
-                with sqlite3.connect(DATABASE) as connection:
+                with db_connect() as connection:
                     cursor = connection.cursor()
                     cursor.execute('UPDATE recipes SET image=? \
                                    WHERE id=? AND user_id=?',
@@ -357,7 +360,7 @@ def edit_recipe(recipe_id):
                     connection.commit()
 
         # Update other recipe details
-        with sqlite3.connect(DATABASE) as connection:
+        with db_connect() as connection:
             cursor = connection.cursor()
             cursor.execute('UPDATE recipes SET title=?, ingredients=?, \
                            instructions=?, notes=? WHERE id=? AND user_id=?',
