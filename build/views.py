@@ -367,6 +367,7 @@ def edit_recipe(recipe_id):
                            (title, ingredients, instructions,
                             notes, recipe_id, user_id))
             connection.commit()
+            return redirect(url_for('views.your_recipes'))
 
     # Return the template without flashing the message for the 'GET' request
     return render_template('edit_recipe.html', recipe=recipe, user_id=user_id)
