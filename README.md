@@ -4,7 +4,7 @@
 
 ## **Site Overview**
 As a lover of food I'm always playing with recipes, making modifications, writing them down on bits of paper and losing them, so for this project I thought I would creat a personal recipe book where the user can add there own recipes, edit recipes, add to a favorites list, search through saved recipes and print out recipes, 
-* <a href="http://213.219.38.180/" rel="nofollow"><strong>View the live site here</strong></a>
+* <a href="https://recipebook.andyryan.tech" rel="nofollow"><strong>View the live site here</strong></a>
 
 # Table of contents 
 1. [**Site Overview**](#site-overview)
@@ -283,7 +283,7 @@ As a user, I want to...
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/htmlcheck4.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/htmlcheck4.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
 
     Errors on some pages as shown due to none html code used by Python and Javascript.
-    Best practice scores lowered due to test on sever that does not have a SSl certificate.
+ 
 
 
 #### ***CSS*** - https://jigsaw.w3.org/css-validator/
